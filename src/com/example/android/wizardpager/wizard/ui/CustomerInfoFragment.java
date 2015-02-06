@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,15 +117,20 @@ public class CustomerInfoFragment extends Fragment {
 
         mEmailView.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { 
+            	Log.i("beforeTextChanged", charSequence.toString());
+            }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { 
+            	Log.i("onTextChanged", charSequence.toString());
+            }
 
             @Override
             public void afterTextChanged(Editable editable) {
                 mPage.getData().putString(ProfessorInfoPage.EMAIL_DATA_KEY, (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
+               Log.i("afterTextChanged", editable.toString());
             }
         });
         
