@@ -31,6 +31,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.android.wizardpager.R;
+import com.example.android.wizardpager.wizard.model.CustomerInfoPage;
+import com.example.android.wizardpager.wizard.model.Page;
 import com.example.android.wizardpager.wizard.model.ProfessorInfoPage;
 
 public class ProfessorInfoFragment extends Fragment {
@@ -38,7 +40,7 @@ public class ProfessorInfoFragment extends Fragment {
 
     private PageFragmentCallbacks mCallbacks;
     private String mKey;
-    private ProfessorInfoPage mPage;
+    private Page mPage;
     
     private Spinner spnName;
     private Spinner spnEmail;
@@ -62,7 +64,12 @@ public class ProfessorInfoFragment extends Fragment {
 
         Bundle args = getArguments();
         mKey = args.getString(ARG_KEY);
-        mPage = (ProfessorInfoPage) mCallbacks.onGetPage(mKey);
+                
+        try {
+        	mPage = (ProfessorInfoPage) mCallbacks.onGetPage(mKey);
+		} catch (Exception e) {
+			mPage = (CustomerInfoPage) mCallbacks.onGetPage(mKey);
+		}
     }
 
     @Override
