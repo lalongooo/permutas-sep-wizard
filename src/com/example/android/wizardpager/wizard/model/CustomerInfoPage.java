@@ -17,7 +17,6 @@
 package com.example.android.wizardpager.wizard.model;
 
 import com.example.android.wizardpager.wizard.ui.CustomerInfoFragment;
-import com.example.android.wizardpager.wizard.ui.ProfessorInfoFragment;
 
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -37,7 +36,7 @@ public class CustomerInfoPage extends Page {
 
     @Override
     public Fragment createFragment() {
-        return ProfessorInfoFragment.create(getKey());
+        return CustomerInfoFragment.create(getKey());
     }
 
     @Override

@@ -30,6 +30,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.example.android.wizardpager.R;
+import com.example.android.wizardpager.wizard.model.CustomerInfoPage;
 import com.example.android.wizardpager.wizard.model.ProfessorInfoPage;
 
 public class CustomerInfoFragment extends Fragment {
@@ -37,7 +38,7 @@ public class CustomerInfoFragment extends Fragment {
 
     private PageFragmentCallbacks mCallbacks;
     private String mKey;
-    private ProfessorInfoPage mPage;
+    private CustomerInfoPage mPage;
     private TextView mNameView;
     private TextView mEmailView;
     private TextView mPhoneView;
@@ -60,7 +61,7 @@ public class CustomerInfoFragment extends Fragment {
 
         Bundle args = getArguments();
         mKey = args.getString(ARG_KEY);
-        mPage = (ProfessorInfoPage) mCallbacks.onGetPage(mKey);
+        mPage = (CustomerInfoPage) mCallbacks.onGetPage(mKey);
     }
 
     @Override

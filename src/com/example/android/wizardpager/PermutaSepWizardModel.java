@@ -29,6 +29,6 @@ public class PermutaSepWizardModel extends AbstractWizardModel {
 
 				.setRequired(true),
 		new ProfessorInfoPage(this, "Tu ciudad de origen").setRequired(true),
-		new CustomerInfoPage(this, "Tu informaciÃ³n").setRequired(true));
+		new CustomerInfoPage(this, "Tu información").setRequired(true));
 	}
 }
