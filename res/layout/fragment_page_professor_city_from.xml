@@ -12,8 +12,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
--->
-
+  -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/WizardPageContainer" >
 
@@ -34,18 +33,18 @@
 
             <TextView
                 style="@style/WizardFormLabel"
-                android:text="@string/label_your_name" />
+                android:text="@string/label_your_state" />
 
             <Spinner
                 android:id="@+id/spn_your_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:entries="@array/country_arrays" />
+                android:entries="@array/mex_states" />
 
             <TextView
                 style="@style/WizardFormLabel"
-                android:text="@string/label_your_email" />
+                android:text="@string/label_your_municipality" />
 
             <Spinner
                 android:id="@+id/spn_your_email"
@@ -56,14 +55,14 @@
 
             <TextView
                 style="@style/WizardFormLabel"
-                android:text="@string/label_your_phone" />
+                android:text="@string/label_your_locality" />
 
             <Spinner
                 android:id="@+id/spn_your_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:entries="@array/col_munic" />
+                android:entries="@array/jaltocan_locality" />
         </LinearLayout>
     </ScrollView>
 

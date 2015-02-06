@@ -11,7 +11,7 @@
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
-  limitations under the License.
+  limitations under the License.
 -->
 
 <resources>
@@ -24,35 +24,49 @@
     <string name="label_your_name">Tu nombre</string>
     <string name="label_your_email">Tu correo</string>
     <string name="label_your_phone">Tu teléfono</string>
+    <string name="label_your_state">Tu estado</string>
+    <string name="label_your_municipality">Tu municipio</string>
+    <string name="label_your_locality">Tu localidad</string>
     <string name="hint_your_name">p. ej. Mary</string>
     <string name="hint_your_email">Opcional</string>
     <string name="hint_your_phone">Opcional</string>
     <string name="submit_confirm_message">Place the order with the deli? You will receive an email confirmation.</string>
     <string name="submit_confirm_button">Place order</string>
 
-    <string-array name="country_arrays">
-        <item>Malaysia</item>
-        <item>United States</item>
-        <item>Indonesia</item>
-        <item>France</item>
-        <item>Italy</item>
-        <item>Singapore</item>
-        <item>New Zealand</item>
-        <item>India</item>
-    </string-array>
-    
-    
-    <string-array name="col_munic">
-        <item>ARMERIA</item>
-        <item>COLIMA</item>
-        <item>COMALA</item>
-        <item>COQUIMATLAN</item>
-        <item>CUAUHTÉMOC</item>
-        <item>IXTLAHUACAN</item>
-        <item>MANZANILLO</item>
-        <item>MINATITLAN</item>
-        <item>TECOMAN</item>
-        <item>VILLA DE ALVAREZ</item>
+    <string-array name="mex_states">
+        <item>Aguascalientes</item>
+        <item>Baja California</item>
+        <item>Baja California Sur</item>
+        <item>Campeche</item>
+        <item>Chiapas</item>
+        <item>Chihuahua</item>
+        <item>Coahuila</item>
+        <item>Colima</item>
+        <item>Distrito Federal</item>
+        <item>Durango</item>
+        <item>Estado de Mexico</item>
+        <item>Guanajuato</item>
+        <item>Guerrero</item>
+        <item>Hidalgo</item>
+        <item>Jalisco</item>
+        <item>Michoacan</item>
+        <item>Morelos</item>
+        <item>Nayarit</item>
+        <item>Nuevo Leon</item>
+        <item>Oaxaca</item>
+        <item>Puebla</item>
+        <item>Queretaro</item>
+        <item>Quintana Roo</item>
+        <item>San Luis Potosi</item>
+        <item>Sinaloa</item>
+        <item>Sonora</item>
+        <item>Tabasco</item>
+        <item>Tamaulipas</item>
+        <item>Tlaxcala</item>
+        <item>Veracruz</item>
+        <item>Yucatan</item>
+        <item>Zacatecas</item>
+        <item></item>
     </string-array>
     <string-array name="hgo_munic">
         <item>ACATLAN</item>
@@ -139,6 +153,38 @@
         <item>ZAPOTLAN DE JUAREZ</item>
         <item>ZEMPOALA</item>
         <item>ZIMAPAN</item>
+    </string-array>
+    <string-array name="jaltocan_locality">
+        <item>Jaltocan</item>
+        <item>Amaxac I</item>
+        <item>La Capilla</item>
+        <item>Cuatecomaco</item>
+        <item>El Chote</item>
+        <item>Huichapa</item>
+        <item>Matachilillo</item>
+        <item>Octatitla</item>
+        <item>Petacotita</item>
+        <item>Vinazco</item>
+        <item>Ahuayo</item>
+        <item>La Ilusion</item>
+        <item>Amaxac II</item>
+        <item>Tepexicuicuil</item>
+        <item>La Ceiba</item>
+        <item>Chiconcoac</item>
+        <item>Potrero Zactipan</item>
+        <item>Anacleto Ramos</item>
+        <item>Revolucion Mexicana</item>
+        <item>Cuatzatzas</item>
+        <item>Tzinancatitla</item>
+        <item>El Cafetal</item>
+        <item>Xalamaco</item>
+        <item>La Lima</item>
+        <item>Ojo de Agua</item>
+        <item>Tepexica</item>
+        <item>Tetzinatla</item>
+        <item>Aguacatitla</item>
+        <item>Terrero</item>
+        <item>Nuevo Rosario</item>
     </string-array>
 
 </resources>
