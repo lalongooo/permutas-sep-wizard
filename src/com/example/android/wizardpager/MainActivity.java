@@ -16,12 +16,8 @@
 
 package com.example.android.wizardpager;
 
-import com.example.android.wizardpager.wizard.model.AbstractWizardModel;
-import com.example.android.wizardpager.wizard.model.ModelCallbacks;
-import com.example.android.wizardpager.wizard.model.Page;
-import com.example.android.wizardpager.wizard.ui.PageFragmentCallbacks;
-import com.example.android.wizardpager.wizard.ui.ReviewFragment;
-import com.example.android.wizardpager.wizard.ui.StepPagerStrip;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -32,12 +28,19 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import java.util.List;
+import com.example.android.wizardpager.wizard.model.AbstractWizardModel;
+import com.example.android.wizardpager.wizard.model.ModelCallbacks;
+import com.example.android.wizardpager.wizard.model.Page;
+import com.example.android.wizardpager.wizard.model.ReviewItem;
+import com.example.android.wizardpager.wizard.ui.PageFragmentCallbacks;
+import com.example.android.wizardpager.wizard.ui.ReviewFragment;
+import com.example.android.wizardpager.wizard.ui.StepPagerStrip;
 
 public class MainActivity extends FragmentActivity implements
         PageFragmentCallbacks,
@@ -107,6 +110,13 @@ public class MainActivity extends FragmentActivity implements
                     DialogFragment dg = new DialogFragment() {
                         @Override
                         public Dialog onCreateDialog(Bundle savedInstanceState) {
+                        	
+                        	ArrayList<ReviewItem> ri = new ArrayList<ReviewItem>(); 
+                        	for (Page p : mWizardModel.getCurrentPageSequence()) {
+                        		p.getReviewItems(ri);
+							}
+                        	Log.i("Completed!", ri.toString());
+                        	
                             return new AlertDialog.Builder(getActivity())
                                     .setMessage(R.string.submit_confirm_message)
                                     .setPositiveButton(R.string.submit_confirm_button, null)
