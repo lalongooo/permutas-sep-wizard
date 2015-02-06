@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * A page asking for a name and an email.
  */
 public class ProfessorInfoPage extends Page {
-	public static final String NAME_DATA_KEY = "name";
-	public static final String EMAIL_DATA_KEY = "email";
-	public static final String MOBILE_DATA_KEY = "mobile";
+	public static final String STATE_DATA_KEY = "state";
+	public static final String MUNICIPALITY_DATA_KEY = "municipality";
+	public static final String LOCALITY_DATA_KEY = "locality";
 
 	public ProfessorInfoPage(ModelCallbacks callbacks, String title) {
 		super(callbacks, title);
@@ -26,13 +26,13 @@ public class ProfessorInfoPage extends Page {
 
 	@Override
 	public void getReviewItems(ArrayList<ReviewItem> dest) {
-		dest.add(new ReviewItem("TU ESTADO", mData.getString(NAME_DATA_KEY), getKey(), -1));
-		dest.add(new ReviewItem("TU MUNICIPIO", mData.getString(EMAIL_DATA_KEY), getKey(), -1));
-		dest.add(new ReviewItem("TU LOCALIDAD", mData.getString(MOBILE_DATA_KEY), getKey(), -1));
+		dest.add(new ReviewItem("TU ESTADO", mData.getString(STATE_DATA_KEY), getKey(), -1));
+		dest.add(new ReviewItem("TU MUNICIPIO", mData.getString(MUNICIPALITY_DATA_KEY), getKey(), -1));
+		dest.add(new ReviewItem("TU LOCALIDAD", mData.getString(LOCALITY_DATA_KEY), getKey(), -1));
 	}
 
 	@Override
 	public boolean isCompleted() {
-		return !TextUtils.isEmpty(mData.getString(NAME_DATA_KEY));
+		return !TextUtils.isEmpty(mData.getString(STATE_DATA_KEY));
 	}
 }

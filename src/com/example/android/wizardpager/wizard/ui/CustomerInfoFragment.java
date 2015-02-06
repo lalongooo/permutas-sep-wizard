@@ -31,7 +31,6 @@ import android.widget.TextView;
 
 import com.example.android.wizardpager.R;
 import com.example.android.wizardpager.wizard.model.CustomerInfoPage;
-import com.example.android.wizardpager.wizard.model.ProfessorInfoPage;
 
 public class CustomerInfoFragment extends Fragment {
     private static final String ARG_KEY = "key";
@@ -70,13 +69,13 @@ public class CustomerInfoFragment extends Fragment {
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
 
         mNameView = ((TextView) rootView.findViewById(R.id.your_name));
-        mNameView.setText(mPage.getData().getString(ProfessorInfoPage.NAME_DATA_KEY));
+        mNameView.setText(mPage.getData().getString(CustomerInfoPage.NAME_DATA_KEY));
 
         mEmailView = ((TextView) rootView.findViewById(R.id.your_email));
-        mEmailView.setText(mPage.getData().getString(ProfessorInfoPage.EMAIL_DATA_KEY));
+        mEmailView.setText(mPage.getData().getString(CustomerInfoPage.EMAIL_DATA_KEY));
 
         mPhoneView = ((TextView) rootView.findViewById(R.id.your_phone));
-        mPhoneView.setText(mPage.getData().getString(ProfessorInfoPage.MOBILE_DATA_KEY));        
+        mPhoneView.setText(mPage.getData().getString(CustomerInfoPage.PHONE_DATA_KEY));        
         
         return rootView;
     }
@@ -111,7 +110,7 @@ public class CustomerInfoFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(ProfessorInfoPage.NAME_DATA_KEY, (editable != null) ? editable.toString() : null);
+                mPage.getData().putString(CustomerInfoPage.NAME_DATA_KEY, (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
             }
         });
@@ -129,7 +128,7 @@ public class CustomerInfoFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(ProfessorInfoPage.EMAIL_DATA_KEY, (editable != null) ? editable.toString() : null);
+                mPage.getData().putString(CustomerInfoPage.EMAIL_DATA_KEY, (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
                Log.i("afterTextChanged", editable.toString());
             }
@@ -145,7 +144,7 @@ public class CustomerInfoFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(ProfessorInfoPage.MOBILE_DATA_KEY, (editable != null) ? editable.toString() : null);
+                mPage.getData().putString(CustomerInfoPage.PHONE_DATA_KEY, (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
             }
         });

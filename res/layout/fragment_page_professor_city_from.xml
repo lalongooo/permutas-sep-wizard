@@ -36,7 +36,7 @@
                 android:text="@string/label_your_state" />
 
             <Spinner
-                android:id="@+id/spn_your_name"
+                android:id="@+id/spn_your_state"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -47,7 +47,7 @@
                 android:text="@string/label_your_municipality" />
 
             <Spinner
-                android:id="@+id/spn_your_email"
+                android:id="@+id/spn_your_municipality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -58,7 +58,7 @@
                 android:text="@string/label_your_locality" />
 
             <Spinner
-                android:id="@+id/spn_your_phone"
+                android:id="@+id/spn_your_locality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"

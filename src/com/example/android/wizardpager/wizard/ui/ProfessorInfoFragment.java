@@ -41,9 +41,9 @@ public class ProfessorInfoFragment extends Fragment {
     private String mKey;
     private Page mPage;
     
-    private Spinner spnName;
-    private Spinner spnEmail;
-    private Spinner spnPhone;
+    private Spinner spnState;
+    private Spinner spnMunicipality;
+    private Spinner spnLocality;
 
     public static ProfessorInfoFragment create(String key) {
         Bundle args = new Bundle();
@@ -80,9 +80,9 @@ public class ProfessorInfoFragment extends Fragment {
 //        mPhoneView = ((TextView) rootView.findViewById(R.id.your_phone));
 //        mPhoneView.setText(mPage.getData().getString(ProfessorInfoPage.MOBILE_DATA_KEY));
         
-		spnName = ((Spinner) rootView.findViewById(R.id.spn_your_name));
-		spnEmail = ((Spinner) rootView.findViewById(R.id.spn_your_email));
-		spnPhone = ((Spinner) rootView.findViewById(R.id.spn_your_phone));		
+		spnState = ((Spinner) rootView.findViewById(R.id.spn_your_state));
+		spnMunicipality = ((Spinner) rootView.findViewById(R.id.spn_your_municipality));
+		spnLocality = ((Spinner) rootView.findViewById(R.id.spn_your_locality));		
         
         return rootView;
     }
@@ -155,13 +155,13 @@ public class ProfessorInfoFragment extends Fragment {
 //            }
 //        });
     
-        spnName.setOnItemSelectedListener(new OnItemSelectedListener() {
+        spnState.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				String selectedItemText = spnName.getSelectedItem().toString();
+				String selectedItemText = spnState.getSelectedItem().toString();
 				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorInfoPage.NAME_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
+				mPage.getData().putString(ProfessorInfoPage.STATE_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
                 mPage.notifyDataChanged();
 			}
 
@@ -171,13 +171,13 @@ public class ProfessorInfoFragment extends Fragment {
 			}
 		});
 
-        spnEmail.setOnItemSelectedListener(new OnItemSelectedListener() {
+        spnMunicipality.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				String selectedItemText = spnEmail.getSelectedItem().toString();
+				String selectedItemText = spnMunicipality.getSelectedItem().toString();
 				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorInfoPage.EMAIL_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
+				mPage.getData().putString(ProfessorInfoPage.MUNICIPALITY_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
                 mPage.notifyDataChanged();
 			}
 
@@ -187,13 +187,13 @@ public class ProfessorInfoFragment extends Fragment {
 			}
 		});
         
-        spnPhone.setOnItemSelectedListener(new OnItemSelectedListener() {
+        spnLocality.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				String selectedItemText = spnPhone.getSelectedItem().toString();
+				String selectedItemText = spnLocality.getSelectedItem().toString();
 				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorInfoPage.MOBILE_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
+				mPage.getData().putString(ProfessorInfoPage.LOCALITY_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
                 mPage.notifyDataChanged();				
 			}
 
@@ -210,7 +210,7 @@ public class ProfessorInfoFragment extends Fragment {
 
         // In a future update to the support library, this should override setUserVisibleHint
         // instead of setMenuVisibility.
-        if (spnPhone != null && spnPhone.getSelectedItem().toString() != null) {
+        if (spnLocality != null && spnLocality.getSelectedItem().toString() != null) {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (!menuVisible) {
                 imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
