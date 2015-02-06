@@ -69,90 +69,90 @@
         <item></item>
     </string-array>
     <string-array name="hgo_munic">
-        <item>ACATLAN</item>
-        <item>ACAXOCHITLAN</item>
-        <item>ACTOPAN</item>
-        <item>AGUA BLANCA DE ITURBIDE</item>
-        <item>AJACUBA</item>
-        <item>ALFAJAYUCAN</item>
-        <item>ALMOLOYA</item>
-        <item>APAN</item>
-        <item>EL ARENAL</item>
-        <item>ATITALAQUIA</item>
-        <item>ATLAPEXCO</item>
-        <item>ATOTONILCO EL GRANDE</item>
-        <item>ATOTONILCO DE TULA</item>
-        <item>CALNALI</item>
-        <item>CARDONAL</item>
-        <item>CUAUTEPEC DE HINOJOSA</item>
-        <item>CHAPANTONGO</item>
-        <item>CHAPULHUACAN</item>
-        <item>CHILCUAUTLA</item>
-        <item>ELOXOCHITLAN</item>
-        <item>EMILIANO ZAPATA</item>
-        <item>EPAZOYUCAN</item>
-        <item>FRANCISCO I. MADERO</item>
-        <item>HUASCA DE OCAMPO</item>
-        <item>HUAUTLA</item>
-        <item>HUAZALINGO</item>
-        <item>HUEHUETLA</item>
-        <item>HUEJUTLA DE REYES</item>
-        <item>HUICHAPAN</item>
-        <item>IXMIQUILPAN</item>
-        <item>JACALA DE LEDEZMA</item>
-        <item>JALTOCAN</item>
-        <item>JUAREZ HIDALGO</item>
-        <item>LOLOTLA</item>
-        <item>METEPEC</item>
-        <item>SAN AGUSTÍN METZQUITITLAN</item>
-        <item>METZTITLAN</item>
-        <item>MINERAL DEL CHICO</item>
-        <item>MINERAL DEL MONTE</item>
-        <item>LA MISIÓN</item>
-        <item>MIXQUIAHUALA DE JUAREZ</item>
-        <item>MOLANGO DE ESCAMILLA</item>
-        <item>NICOLAS FLORES</item>
-        <item>NOPALA DE VILLAGRAN</item>
-        <item>OMITLAN DE JUAREZ</item>
-        <item>SAN FELIPE ORIZATLAN</item>
-        <item>PACULA</item>
-        <item>PACHUCA DE SOTO</item>
-        <item>PISAFLORES</item>
-        <item>PROGRESO DE OBREGÓN</item>
-        <item>MINERAL DE LA REFORMA</item>
-        <item>SAN AGUSTÍN TLAXIACA</item>
-        <item>SAN BARTOLO TUTOTEPEC</item>
-        <item>SAN SALVADOR</item>
-        <item>SANTIAGO DE ANAYA</item>
-        <item>SANTIAGO TULANTEPEC DE LUGO GUERRERO</item>
-        <item>SINGUILUCAN</item>
-        <item>TASQUILLO</item>
-        <item>TECOZAUTLA</item>
-        <item>TENANGO DE DORIA</item>
-        <item>TEPEAPULCO</item>
-        <item>TEPEHUACAN DE GUERRERO</item>
-        <item>TEPEJI DEL RÍO DE OCAMPO</item>
-        <item>TEPETITLAN</item>
-        <item>TETEPANGO</item>
-        <item>VILLA DE TEZONTEPEC</item>
-        <item>TEZONTEPEC DE ALDAMA</item>
-        <item>TIANGUISTENGO</item>
-        <item>TIZAYUCA</item>
-        <item>TLAHUELILPAN</item>
-        <item>TLAHUILTEPA</item>
-        <item>TLANALAPA</item>
-        <item>TLANCHINOL</item>
-        <item>TLAXCOAPAN</item>
-        <item>TOLCAYUCA</item>
-        <item>TULA DE ALLENDE</item>
-        <item>TULANCINGO DE BRAVO</item>
-        <item>XOCHIATIPAN</item>
-        <item>XOCHICOATLAN</item>
-        <item>YAHUALICA</item>
-        <item>ZACUALTIPAN DE ÁNGELES</item>
-        <item>ZAPOTLAN DE JUAREZ</item>
-        <item>ZEMPOALA</item>
-        <item>ZIMAPAN</item>
+        <item>Acatlan</item>
+        <item>Acaxochitlan</item>
+        <item>Actopan</item>
+        <item>Agua Blanca De Iturbide</item>
+        <item>Ajacuba</item>
+        <item>Alfajayucan</item>
+        <item>Almoloya</item>
+        <item>Apan</item>
+        <item>El Arenal</item>
+        <item>Atitalaquia</item>
+        <item>Atlapexco</item>
+        <item>Atotonilco El Grande</item>
+        <item>Atotonilco De Tula</item>
+        <item>Calnali</item>
+        <item>Cardonal</item>
+        <item>Cuautepec De Hinojosa</item>
+        <item>Chapantongo</item>
+        <item>Chapulhuacan</item>
+        <item>Chilcuautla</item>
+        <item>Eloxochitlan</item>
+        <item>Emiliano Zapata</item>
+        <item>Epazoyucan</item>
+        <item>Francisco I. Madero</item>
+        <item>Huasca De Ocampo</item>
+        <item>Huautla</item>
+        <item>Huazalingo</item>
+        <item>Huehuetla</item>
+        <item>Huejutla De Reyes</item>
+        <item>Huichapan</item>
+        <item>Ixmiquilpan</item>
+        <item>Jacala De Ledezma</item>
+        <item>Jaltocan</item>
+        <item>Juarez Hidalgo</item>
+        <item>Lolotla</item>
+        <item>Metepec</item>
+        <item>San Agustin Metzquititlan</item>
+        <item>Metztitlan</item>
+        <item>Mineral Del Chico</item>
+        <item>Mineral Del Monte</item>
+        <item>La Mision</item>
+        <item>Mixquiahuala De Juarez</item>
+        <item>Molango De Escamilla</item>
+        <item>Nicolas Flores</item>
+        <item>Nopala De Villagran</item>
+        <item>Omitlan De Juarez</item>
+        <item>San Felipe Orizatlan</item>
+        <item>Pacula</item>
+        <item>Pachuca De Soto</item>
+        <item>Pisaflores</item>
+        <item>Progreso De Obregon</item>
+        <item>Mineral De La Reforma</item>
+        <item>San Agustin Tlaxiaca</item>
+        <item>San Bartolo Tutotepec</item>
+        <item>San Salvador</item>
+        <item>Santiago De Anaya</item>
+        <item>Santiago Tulantepec De Lugo Guerrero</item>
+        <item>Singuilucan</item>
+        <item>Tasquillo</item>
+        <item>Tecozautla</item>
+        <item>Tenango De Doria</item>
+        <item>Tepeapulco</item>
+        <item>Tepehuacan De Guerrero</item>
+        <item>Tepeji Del Rio De Ocampo</item>
+        <item>Tepetitlan</item>
+        <item>Tetepango</item>
+        <item>Villa De Tezontepec</item>
+        <item>Tezontepec De Aldama</item>
+        <item>Tianguistengo</item>
+        <item>Tizayuca</item>
+        <item>Tlahuelilpan</item>
+        <item>Tlahuiltepa</item>
+        <item>Tlanalapa</item>
+        <item>Tlanchinol</item>
+        <item>Tlaxcoapan</item>
+        <item>Tolcayuca</item>
+        <item>Tula De Allende</item>
+        <item>Tulancingo De Bravo</item>
+        <item>Xochiatipan</item>
+        <item>Xochicoatlan</item>
+        <item>Yahualica</item>
+        <item>Zacualtipan De Angeles</item>
+        <item>Zapotlan De Juarez</item>
+        <item>Zempoala</item>
+        <item>Zimapan</item>
     </string-array>
     <string-array name="jaltocan_locality">
         <item>Jaltocan</item>

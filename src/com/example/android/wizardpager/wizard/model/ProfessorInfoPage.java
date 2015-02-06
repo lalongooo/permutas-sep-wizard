@@ -26,9 +26,9 @@ public class ProfessorInfoPage extends Page {
 
 	@Override
 	public void getReviewItems(ArrayList<ReviewItem> dest) {
-		dest.add(new ReviewItem("Tu nombre", mData.getString(NAME_DATA_KEY), getKey(), -1));
-		dest.add(new ReviewItem("Tu correo", mData.getString(EMAIL_DATA_KEY), getKey(), -1));
-		dest.add(new ReviewItem("Tu teléfono", mData.getString(MOBILE_DATA_KEY), getKey(), -1));
+		dest.add(new ReviewItem("TU ESTADO", mData.getString(NAME_DATA_KEY), getKey(), -1));
+		dest.add(new ReviewItem("TU MUNICIPIO", mData.getString(EMAIL_DATA_KEY), getKey(), -1));
+		dest.add(new ReviewItem("TU LOCALIDAD", mData.getString(MOBILE_DATA_KEY), getKey(), -1));
 	}
 
 	@Override
