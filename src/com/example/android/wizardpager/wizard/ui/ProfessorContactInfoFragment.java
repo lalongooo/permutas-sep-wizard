@@ -30,28 +30,28 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.example.android.wizardpager.R;
-import com.example.android.wizardpager.wizard.model.CustomerInfoPage;
+import com.example.android.wizardpager.wizard.model.ProfessorContactInfoPage;
 
-public class CustomerInfoFragment extends Fragment {
+public class ProfessorContactInfoFragment extends Fragment {
     private static final String ARG_KEY = "key";
 
     private PageFragmentCallbacks mCallbacks;
     private String mKey;
-    private CustomerInfoPage mPage;
+    private ProfessorContactInfoPage mPage;
     private TextView mNameView;
     private TextView mEmailView;
     private TextView mPhoneView;
 
-    public static CustomerInfoFragment create(String key) {
+    public static ProfessorContactInfoFragment create(String key) {
         Bundle args = new Bundle();
         args.putString(ARG_KEY, key);
 
-        CustomerInfoFragment fragment = new CustomerInfoFragment();
+        ProfessorContactInfoFragment fragment = new ProfessorContactInfoFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public CustomerInfoFragment() {
+    public ProfessorContactInfoFragment() {
     }
 
     @Override
@@ -60,7 +60,7 @@ public class CustomerInfoFragment extends Fragment {
 
         Bundle args = getArguments();
         mKey = args.getString(ARG_KEY);
-        mPage = (CustomerInfoPage) mCallbacks.onGetPage(mKey);
+        mPage = (ProfessorContactInfoPage) mCallbacks.onGetPage(mKey);
     }
 
     @Override
@@ -69,13 +69,13 @@ public class CustomerInfoFragment extends Fragment {
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
 
         mNameView = ((TextView) rootView.findViewById(R.id.your_name));
-        mNameView.setText(mPage.getData().getString(CustomerInfoPage.NAME_DATA_KEY));
+        mNameView.setText(mPage.getData().getString(ProfessorContactInfoPage.NAME_DATA_KEY));
 
         mEmailView = ((TextView) rootView.findViewById(R.id.your_email));
-        mEmailView.setText(mPage.getData().getString(CustomerInfoPage.EMAIL_DATA_KEY));
+        mEmailView.setText(mPage.getData().getString(ProfessorContactInfoPage.EMAIL_DATA_KEY));
 
         mPhoneView = ((TextView) rootView.findViewById(R.id.your_phone));
-        mPhoneView.setText(mPage.getData().getString(CustomerInfoPage.PHONE_DATA_KEY));        
+        mPhoneView.setText(mPage.getData().getString(ProfessorContactInfoPage.PHONE_DATA_KEY));        
         
         return rootView;
     }
@@ -110,7 +110,7 @@ public class CustomerInfoFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(CustomerInfoPage.NAME_DATA_KEY, (editable != null) ? editable.toString() : null);
+                mPage.getData().putString(ProfessorContactInfoPage.NAME_DATA_KEY, (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
             }
         });
@@ -128,7 +128,7 @@ public class CustomerInfoFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(CustomerInfoPage.EMAIL_DATA_KEY, (editable != null) ? editable.toString() : null);
+                mPage.getData().putString(ProfessorContactInfoPage.EMAIL_DATA_KEY, (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
                Log.i("afterTextChanged", editable.toString());
             }
@@ -144,7 +144,7 @@ public class CustomerInfoFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(CustomerInfoPage.PHONE_DATA_KEY, (editable != null) ? editable.toString() : null);
+                mPage.getData().putString(ProfessorContactInfoPage.PHONE_DATA_KEY, (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
             }
         });

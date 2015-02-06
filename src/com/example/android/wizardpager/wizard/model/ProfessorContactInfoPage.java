@@ -16,7 +16,7 @@
 
 package com.example.android.wizardpager.wizard.model;
 
-import com.example.android.wizardpager.wizard.ui.CustomerInfoFragment;
+import com.example.android.wizardpager.wizard.ui.ProfessorContactInfoFragment;
 
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -26,18 +26,18 @@ import java.util.ArrayList;
 /**
  * A page asking for a name and an email.
  */
-public class CustomerInfoPage extends Page {
+public class ProfessorContactInfoPage extends Page {
     public static final String NAME_DATA_KEY = "name";
     public static final String EMAIL_DATA_KEY = "email";
     public static final String PHONE_DATA_KEY = "phone";
 
-    public CustomerInfoPage(ModelCallbacks callbacks, String title) {
+    public ProfessorContactInfoPage(ModelCallbacks callbacks, String title) {
         super(callbacks, title);
     }
 
     @Override
     public Fragment createFragment() {
-        return CustomerInfoFragment.create(getKey());
+        return ProfessorContactInfoFragment.create(getKey());
     }
 
     @Override

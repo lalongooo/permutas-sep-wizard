@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.example.android.wizardpager.wizard.model.AbstractWizardModel;
 import com.example.android.wizardpager.wizard.model.BranchPage;
-import com.example.android.wizardpager.wizard.model.CustomerInfoPage;
+import com.example.android.wizardpager.wizard.model.ProfessorContactInfoPage;
 import com.example.android.wizardpager.wizard.model.PageList;
-import com.example.android.wizardpager.wizard.model.ProfessorInfoPage;
+import com.example.android.wizardpager.wizard.model.ProfessorCityFromPage;
 import com.example.android.wizardpager.wizard.model.SingleFixedChoicePage;
 
 public class PermutaSepWizardModel extends AbstractWizardModel {
@@ -28,7 +28,7 @@ public class PermutaSepWizardModel extends AbstractWizardModel {
 						new SingleFixedChoicePage(this, "Carrera magisterial").setChoices("Si", "No").setRequired(true))
 
 				.setRequired(true),
-		new ProfessorInfoPage(this, "Tu ciudad de origen").setRequired(true),
-		new CustomerInfoPage(this, "Tu información").setRequired(true));
+		new ProfessorCityFromPage(this, "Tu ciudad de origen").setRequired(true),
+		new ProfessorContactInfoPage(this, "Tu información").setRequired(true));
 	}
 }

@@ -18,7 +18,7 @@ package com.example.android.wizardpager;
 
 import com.example.android.wizardpager.wizard.model.AbstractWizardModel;
 import com.example.android.wizardpager.wizard.model.BranchPage;
-import com.example.android.wizardpager.wizard.model.CustomerInfoPage;
+import com.example.android.wizardpager.wizard.model.ProfessorContactInfoPage;
 import com.example.android.wizardpager.wizard.model.MultipleFixedChoicePage;
 import com.example.android.wizardpager.wizard.model.PageList;
 import com.example.android.wizardpager.wizard.model.SingleFixedChoicePage;
@@ -72,7 +72,7 @@ public class SandwichWizardModel extends AbstractWizardModel {
 
                         .setRequired(true),
 
-                new CustomerInfoPage(this, "Your info")
+                new ProfessorContactInfoPage(this, "Your info")
                         .setRequired(true)
         );
     }

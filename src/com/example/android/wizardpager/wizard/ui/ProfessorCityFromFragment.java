@@ -32,9 +32,9 @@ import android.widget.TextView;
 
 import com.example.android.wizardpager.R;
 import com.example.android.wizardpager.wizard.model.Page;
-import com.example.android.wizardpager.wizard.model.ProfessorInfoPage;
+import com.example.android.wizardpager.wizard.model.ProfessorCityFromPage;
 
-public class ProfessorInfoFragment extends Fragment {
+public class ProfessorCityFromFragment extends Fragment {
     private static final String ARG_KEY = "key";
 
     private PageFragmentCallbacks mCallbacks;
@@ -45,16 +45,16 @@ public class ProfessorInfoFragment extends Fragment {
     private Spinner spnMunicipality;
     private Spinner spnLocality;
 
-    public static ProfessorInfoFragment create(String key) {
+    public static ProfessorCityFromFragment create(String key) {
         Bundle args = new Bundle();
         args.putString(ARG_KEY, key);
 
-        ProfessorInfoFragment fragment = new ProfessorInfoFragment();
+        ProfessorCityFromFragment fragment = new ProfessorCityFromFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public ProfessorInfoFragment() {
+    public ProfessorCityFromFragment() {
     }
 
     @Override
@@ -63,22 +63,13 @@ public class ProfessorInfoFragment extends Fragment {
 
         Bundle args = getArguments();
         mKey = args.getString(ARG_KEY);
-        mPage = (ProfessorInfoPage) mCallbacks.onGetPage(mKey);
+        mPage = (ProfessorCityFromPage) mCallbacks.onGetPage(mKey);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_page_professor_city_from, container, false);
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
-
-//        mNameView = ((TextView) rootView.findViewById(R.id.your_name));
-//        mNameView.setText(mPage.getData().getString(ProfessorInfoPage.NAME_DATA_KEY));
-//
-//        mEmailView = ((TextView) rootView.findViewById(R.id.your_email));
-//        mEmailView.setText(mPage.getData().getString(ProfessorInfoPage.EMAIL_DATA_KEY));
-//
-//        mPhoneView = ((TextView) rootView.findViewById(R.id.your_phone));
-//        mPhoneView.setText(mPage.getData().getString(ProfessorInfoPage.MOBILE_DATA_KEY));
         
 		spnState = ((Spinner) rootView.findViewById(R.id.spn_your_state));
 		spnMunicipality = ((Spinner) rootView.findViewById(R.id.spn_your_municipality));
@@ -107,53 +98,6 @@ public class ProfessorInfoFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-//        mNameView.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                mPage.getData().putString(ProfessorInfoPage.NAME_DATA_KEY, (editable != null) ? editable.toString() : null);
-//                mPage.notifyDataChanged();
-//            }
-//        });
-//
-//        mEmailView.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { 
-//            	Log.i("beforeTextChanged", charSequence.toString());
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { 
-//            	Log.i("onTextChanged", charSequence.toString());
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                mPage.getData().putString(ProfessorInfoPage.EMAIL_DATA_KEY, (editable != null) ? editable.toString() : null);
-//                mPage.notifyDataChanged();
-//               Log.i("afterTextChanged", editable.toString());
-//            }
-//        });
-//               
-//        mPhoneView.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                mPage.getData().putString(ProfessorInfoPage.MOBILE_DATA_KEY, (editable != null) ? editable.toString() : null);
-//                mPage.notifyDataChanged();
-//            }
-//        });
     
         spnState.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -161,7 +105,7 @@ public class ProfessorInfoFragment extends Fragment {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				String selectedItemText = spnState.getSelectedItem().toString();
 				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorInfoPage.STATE_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
+				mPage.getData().putString(ProfessorCityFromPage.STATE_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
                 mPage.notifyDataChanged();
 			}
 
@@ -177,7 +121,7 @@ public class ProfessorInfoFragment extends Fragment {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				String selectedItemText = spnMunicipality.getSelectedItem().toString();
 				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorInfoPage.MUNICIPALITY_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
+				mPage.getData().putString(ProfessorCityFromPage.MUNICIPALITY_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
                 mPage.notifyDataChanged();
 			}
 
@@ -193,7 +137,7 @@ public class ProfessorInfoFragment extends Fragment {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				String selectedItemText = spnLocality.getSelectedItem().toString();
 				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorInfoPage.LOCALITY_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
+				mPage.getData().putString(ProfessorCityFromPage.LOCALITY_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
                 mPage.notifyDataChanged();				
 			}
 
