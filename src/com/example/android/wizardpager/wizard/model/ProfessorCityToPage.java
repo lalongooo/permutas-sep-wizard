@@ -1,11 +1,12 @@
 package com.example.android.wizardpager.wizard.model;
 
-import com.example.android.wizardpager.wizard.ui.ProfessorCityFromFragment;
 
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
+
+import com.example.android.wizardpager.wizard.ui.ProfessorCityToFragment;
 
 /**
  * A page asking for a name and an email.
@@ -21,7 +22,7 @@ public class ProfessorCityToPage extends Page {
 
 	@Override
 	public Fragment createFragment() {
-		return ProfessorCityFromFragment.create(getKey());
+		return ProfessorCityToFragment.create(getKey());
 	}
 
 	@Override
