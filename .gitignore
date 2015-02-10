@@ -17,6 +17,7 @@ _sandbox
 out/
 bin/
 gen/
+.settings/
 
 # Local configuration file (sdk path, etc)
 local.properties
