@@ -39,6 +39,7 @@ public abstract class Page implements PageTreeNode {
     protected String mTitle;
     protected boolean mRequired = false;
     protected String mParentKey;
+    protected String mKey;
 
     protected Page(ModelCallbacks callbacks, String title) {
         mCallbacks = callbacks;
@@ -74,7 +75,12 @@ public abstract class Page implements PageTreeNode {
     public abstract Fragment createFragment();
 
     public String getKey() {
-        return (mParentKey != null) ? mParentKey + ":" + mTitle : mTitle;
+        return mKey;
+    }
+    
+    public Page setKey(String key) {
+    	mKey = key;
+        return this;
     }
 
     public abstract void getReviewItems(ArrayList<ReviewItem> dest);

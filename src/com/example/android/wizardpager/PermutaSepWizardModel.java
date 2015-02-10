@@ -16,12 +16,12 @@ public class PermutaSepWizardModel extends AbstractWizardModel {
 	@Override
 	protected PageList onNewRootPageList() {
 		return new PageList(
-				new ProfessorContactInfoPage(this, "Tu información").setRequired(true),
-				new ProfessorCityFromPage(this, "Tu ciudad de origen").setRequired(true),
-				new ProfessorCityFromPage(this, "Tu lugar deseado").setRequired(true),
-				new SingleFixedChoicePage(this, "Tipo de plaza").setChoices("Estatal", "Federal").setRequired(true),
-				new SingleFixedChoicePage(this, "Tipo de jornada").setChoices("Jornada Regular", "Jornada ampliada", "Tiempo completo").setRequired(true),
-				new SingleFixedChoicePage(this, "Carrera magisterial").setChoices("Si", "No").setRequired(true)
+				new ProfessorContactInfoPage(this, "Tu información").setRequired(true).setKey("contact_info"),
+				new ProfessorCityFromPage(this, "Tu ciudad de origen").setRequired(true).setKey("city_from"),
+				new ProfessorCityFromPage(this, "Tu lugar deseado").setRequired(true).setKey("desired_city"),
+				new SingleFixedChoicePage(this, "Tipo de plaza").setChoices("Estatal", "Federal").setRequired(true).setKey("type_of_position"),
+				new SingleFixedChoicePage(this, "Tipo de jornada").setChoices("Jornada Regular", "Jornada ampliada", "Tiempo completo").setRequired(true).setKey("schedule_type"),
+				new SingleFixedChoicePage(this, "Carrera magisterial").setChoices("Si", "No").setRequired(true).setKey("magisterium_career")
 				);
 	}
 }

@@ -12,9 +12,9 @@ import com.example.android.wizardpager.wizard.ui.ProfessorCityToFragment;
  * A page asking for a name and an email.
  */
 public class ProfessorCityToPage extends Page {
-	public static final String STATE_DATA_KEY = "state_to";
-	public static final String MUNICIPALITY_DATA_KEY = "municipality_to";
-	public static final String LOCALITY_DATA_KEY = "locality_to";
+	public static final String STATE_TO_DATA_KEY = "state_to";
+	public static final String MUNICIPALITY_TO_DATA_KEY = "municipality_to";
+	public static final String LOCALITY_TO_DATA_KEY = "locality_to";
 
 	public ProfessorCityToPage(ModelCallbacks callbacks, String title) {
 		super(callbacks, title);
@@ -27,13 +27,13 @@ public class ProfessorCityToPage extends Page {
 
 	@Override
 	public void getReviewItems(ArrayList<ReviewItem> dest) {
-		dest.add(new ReviewItem("TU ESTADO", mData.getString(STATE_DATA_KEY), STATE_DATA_KEY, -1));
-		dest.add(new ReviewItem("TU MUNICIPIO", mData.getString(MUNICIPALITY_DATA_KEY), MUNICIPALITY_DATA_KEY, -1));
-		dest.add(new ReviewItem("TU LOCALIDAD", mData.getString(LOCALITY_DATA_KEY), LOCALITY_DATA_KEY, -1));
+		dest.add(new ReviewItem("TU ESTADO", mData.getString(STATE_TO_DATA_KEY), STATE_TO_DATA_KEY, -1));
+		dest.add(new ReviewItem("TU MUNICIPIO", mData.getString(MUNICIPALITY_TO_DATA_KEY), MUNICIPALITY_TO_DATA_KEY, -1));
+		dest.add(new ReviewItem("TU LOCALIDAD", mData.getString(LOCALITY_TO_DATA_KEY), LOCALITY_TO_DATA_KEY, -1));
 	}
 
 	@Override
 	public boolean isCompleted() {
-		return !TextUtils.isEmpty(mData.getString(STATE_DATA_KEY));
+		return !TextUtils.isEmpty(mData.getString(STATE_TO_DATA_KEY));
 	}
 }

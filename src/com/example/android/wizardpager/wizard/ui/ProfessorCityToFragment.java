@@ -68,7 +68,7 @@ public class ProfessorCityToFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_page_professor_city_from, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_page_professor_city_to, container, false);
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
         
 		spnState = ((Spinner) rootView.findViewById(R.id.spn_your_state));
@@ -105,7 +105,7 @@ public class ProfessorCityToFragment extends Fragment {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				String selectedItemText = spnState.getSelectedItem().toString();
 				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorCityToPage.STATE_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
+				mPage.getData().putString(ProfessorCityToPage.STATE_TO_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
                 mPage.notifyDataChanged();
 			}
 
@@ -121,7 +121,7 @@ public class ProfessorCityToFragment extends Fragment {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				String selectedItemText = spnMunicipality.getSelectedItem().toString();
 				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorCityToPage.MUNICIPALITY_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
+				mPage.getData().putString(ProfessorCityToPage.MUNICIPALITY_TO_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
                 mPage.notifyDataChanged();
 			}
 
@@ -137,7 +137,7 @@ public class ProfessorCityToFragment extends Fragment {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				String selectedItemText = spnLocality.getSelectedItem().toString();
 				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorCityToPage.LOCALITY_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
+				mPage.getData().putString(ProfessorCityToPage.LOCALITY_TO_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
                 mPage.notifyDataChanged();				
 			}
 
