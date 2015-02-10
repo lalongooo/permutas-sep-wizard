@@ -115,7 +115,10 @@ public class MainActivity extends FragmentActivity implements
                         	for (Page p : mWizardModel.getCurrentPageSequence()) {
                         		p.getReviewItems(ri);
 							}
-                        	Log.i("Completed!", ri.toString());
+                        	
+                        	for (ReviewItem r : ri) {
+								Log.i(r.getPageKey(), r.getDisplayValue());
+							}
                         	
                             return new AlertDialog.Builder(getActivity())
                                     .setMessage(R.string.submit_confirm_message)
