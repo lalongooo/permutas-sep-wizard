@@ -10,12 +10,12 @@ import java.util.ArrayList;
 /**
  * A page asking for a name and an email.
  */
-public class ProfessorCityFromPage extends Page {
-	public static final String STATE_DATA_KEY = "state_from";
-	public static final String MUNICIPALITY_DATA_KEY = "municipality_from";
-	public static final String LOCALITY_DATA_KEY = "locality_from";
+public class ProfessorCityToPage extends Page {
+	public static final String STATE_DATA_KEY = "state_to";
+	public static final String MUNICIPALITY_DATA_KEY = "municipality_to";
+	public static final String LOCALITY_DATA_KEY = "locality_to";
 
-	public ProfessorCityFromPage(ModelCallbacks callbacks, String title) {
+	public ProfessorCityToPage(ModelCallbacks callbacks, String title) {
 		super(callbacks, title);
 	}
 
