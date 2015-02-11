@@ -27,9 +27,9 @@ public class ProfessorCityToPage extends Page {
 
 	@Override
 	public void getReviewItems(ArrayList<ReviewItem> dest) {
-		dest.add(new ReviewItem("TU ESTADO", mData.getString(STATE_TO_DATA_KEY), STATE_TO_DATA_KEY, -1));
-		dest.add(new ReviewItem("TU MUNICIPIO", mData.getString(MUNICIPALITY_TO_DATA_KEY), MUNICIPALITY_TO_DATA_KEY, -1));
-		dest.add(new ReviewItem("TU LOCALIDAD", mData.getString(LOCALITY_TO_DATA_KEY), LOCALITY_TO_DATA_KEY, -1));
+		dest.add(new ReviewItem("TU ESTADO DESEADO", mData.getString(STATE_TO_DATA_KEY), STATE_TO_DATA_KEY, -1));
+		dest.add(new ReviewItem("TU MUNICIPIO DESEADO", mData.getString(MUNICIPALITY_TO_DATA_KEY), MUNICIPALITY_TO_DATA_KEY, -1));
+		dest.add(new ReviewItem("TU LOCALIDAD DESEADO", mData.getString(LOCALITY_TO_DATA_KEY), LOCALITY_TO_DATA_KEY, -1));
 	}
 
 	@Override
