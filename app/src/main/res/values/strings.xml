@@ -1,0 +1,190 @@
+<!--
+  Copyright 2013 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<resources>
+
+    <string name="app_name">Permutas SEP</string>
+    <string name="next">Siguiente</string>
+    <string name="prev">Regresar</string>
+    <string name="finish">Enviar solicitud</string>
+    <string name="review">Revisa tu información</string>
+    <string name="label_your_name">Tu nombre</string>
+    <string name="label_your_email">Tu correo</string>
+    <string name="label_your_phone">Tu teléfono</string>
+    <string name="label_your_state">Tu estado</string>
+    <string name="label_your_municipality">Tu municipio</string>
+    <string name="label_your_locality">Tu localidad</string>
+    <string name="hint_your_name">p. ej. Mary</string>
+    <string name="hint_your_email">Opcional</string>
+    <string name="hint_your_phone">Opcional</string>
+    <string name="submit_confirm_message">Place the order with the deli? You will receive an email confirmation.</string>
+    <string name="submit_confirm_button">Place order</string>
+
+    <string-array name="mex_states">
+        <item>Aguascalientes</item>
+        <item>Baja California</item>
+        <item>Baja California Sur</item>
+        <item>Campeche</item>
+        <item>Chiapas</item>
+        <item>Chihuahua</item>
+        <item>Coahuila</item>
+        <item>Colima</item>
+        <item>Distrito Federal</item>
+        <item>Durango</item>
+        <item>Estado de Mexico</item>
+        <item>Guanajuato</item>
+        <item>Guerrero</item>
+        <item>Hidalgo</item>
+        <item>Jalisco</item>
+        <item>Michoacan</item>
+        <item>Morelos</item>
+        <item>Nayarit</item>
+        <item>Nuevo Leon</item>
+        <item>Oaxaca</item>
+        <item>Puebla</item>
+        <item>Queretaro</item>
+        <item>Quintana Roo</item>
+        <item>San Luis Potosi</item>
+        <item>Sinaloa</item>
+        <item>Sonora</item>
+        <item>Tabasco</item>
+        <item>Tamaulipas</item>
+        <item>Tlaxcala</item>
+        <item>Veracruz</item>
+        <item>Yucatan</item>
+        <item>Zacatecas</item>
+        <item></item>
+    </string-array>
+    <string-array name="hgo_munic">
+        <item>Acatlan</item>
+        <item>Acaxochitlan</item>
+        <item>Actopan</item>
+        <item>Agua Blanca De Iturbide</item>
+        <item>Ajacuba</item>
+        <item>Alfajayucan</item>
+        <item>Almoloya</item>
+        <item>Apan</item>
+        <item>El Arenal</item>
+        <item>Atitalaquia</item>
+        <item>Atlapexco</item>
+        <item>Atotonilco El Grande</item>
+        <item>Atotonilco De Tula</item>
+        <item>Calnali</item>
+        <item>Cardonal</item>
+        <item>Cuautepec De Hinojosa</item>
+        <item>Chapantongo</item>
+        <item>Chapulhuacan</item>
+        <item>Chilcuautla</item>
+        <item>Eloxochitlan</item>
+        <item>Emiliano Zapata</item>
+        <item>Epazoyucan</item>
+        <item>Francisco I. Madero</item>
+        <item>Huasca De Ocampo</item>
+        <item>Huautla</item>
+        <item>Huazalingo</item>
+        <item>Huehuetla</item>
+        <item>Huejutla De Reyes</item>
+        <item>Huichapan</item>
+        <item>Ixmiquilpan</item>
+        <item>Jacala De Ledezma</item>
+        <item>Jaltocan</item>
+        <item>Juarez Hidalgo</item>
+        <item>Lolotla</item>
+        <item>Metepec</item>
+        <item>San Agustin Metzquititlan</item>
+        <item>Metztitlan</item>
+        <item>Mineral Del Chico</item>
+        <item>Mineral Del Monte</item>
+        <item>La Mision</item>
+        <item>Mixquiahuala De Juarez</item>
+        <item>Molango De Escamilla</item>
+        <item>Nicolas Flores</item>
+        <item>Nopala De Villagran</item>
+        <item>Omitlan De Juarez</item>
+        <item>San Felipe Orizatlan</item>
+        <item>Pacula</item>
+        <item>Pachuca De Soto</item>
+        <item>Pisaflores</item>
+        <item>Progreso De Obregon</item>
+        <item>Mineral De La Reforma</item>
+        <item>San Agustin Tlaxiaca</item>
+        <item>San Bartolo Tutotepec</item>
+        <item>San Salvador</item>
+        <item>Santiago De Anaya</item>
+        <item>Santiago Tulantepec De Lugo Guerrero</item>
+        <item>Singuilucan</item>
+        <item>Tasquillo</item>
+        <item>Tecozautla</item>
+        <item>Tenango De Doria</item>
+        <item>Tepeapulco</item>
+        <item>Tepehuacan De Guerrero</item>
+        <item>Tepeji Del Rio De Ocampo</item>
+        <item>Tepetitlan</item>
+        <item>Tetepango</item>
+        <item>Villa De Tezontepec</item>
+        <item>Tezontepec De Aldama</item>
+        <item>Tianguistengo</item>
+        <item>Tizayuca</item>
+        <item>Tlahuelilpan</item>
+        <item>Tlahuiltepa</item>
+        <item>Tlanalapa</item>
+        <item>Tlanchinol</item>
+        <item>Tlaxcoapan</item>
+        <item>Tolcayuca</item>
+        <item>Tula De Allende</item>
+        <item>Tulancingo De Bravo</item>
+        <item>Xochiatipan</item>
+        <item>Xochicoatlan</item>
+        <item>Yahualica</item>
+        <item>Zacualtipan De Angeles</item>
+        <item>Zapotlan De Juarez</item>
+        <item>Zempoala</item>
+        <item>Zimapan</item>
+    </string-array>
+    <string-array name="jaltocan_locality">
+        <item>Jaltocan</item>
+        <item>Amaxac I</item>
+        <item>La Capilla</item>
+        <item>Cuatecomaco</item>
+        <item>El Chote</item>
+        <item>Huichapa</item>
+        <item>Matachilillo</item>
+        <item>Octatitla</item>
+        <item>Petacotita</item>
+        <item>Vinazco</item>
+        <item>Ahuayo</item>
+        <item>La Ilusion</item>
+        <item>Amaxac II</item>
+        <item>Tepexicuicuil</item>
+        <item>La Ceiba</item>
+        <item>Chiconcoac</item>
+        <item>Potrero Zactipan</item>
+        <item>Anacleto Ramos</item>
+        <item>Revolucion Mexicana</item>
+        <item>Cuatzatzas</item>
+        <item>Tzinancatitla</item>
+        <item>El Cafetal</item>
+        <item>Xalamaco</item>
+        <item>La Lima</item>
+        <item>Ojo de Agua</item>
+        <item>Tepexica</item>
+        <item>Tetzinatla</item>
+        <item>Aguacatitla</item>
+        <item>Terrero</item>
+        <item>Nuevo Rosario</item>
+    </string-array>
+
+</resources>
