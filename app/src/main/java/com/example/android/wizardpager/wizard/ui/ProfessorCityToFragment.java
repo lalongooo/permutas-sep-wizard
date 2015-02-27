@@ -146,7 +146,7 @@ public class ProfessorCityToFragment extends Fragment {
 
 
                 State selectedState = (State)parent.getItemAtPosition(position);
-                if(selectedState.getId() != 0  && getUserVisibleHint()){
+                if(selectedState.getId() != 0){
 
                     showDialog(getString(R.string.please_wait), getString(R.string.main_loading_cities));
                     // Remove localities
@@ -242,7 +242,7 @@ public class ProfessorCityToFragment extends Fragment {
     }
 
     private void hideDialog() {
-        if(pDlg.isShowing())
+        if(getUserVisibleHint())
             pDlg.dismiss();
     }
 

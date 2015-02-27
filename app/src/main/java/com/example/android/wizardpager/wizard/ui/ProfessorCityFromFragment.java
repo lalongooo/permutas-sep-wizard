@@ -80,6 +80,7 @@ public class ProfessorCityFromFragment extends Fragment {
         Bundle args = getArguments();
         mKey = args.getString(ARG_KEY);
         mPage = (ProfessorCityFromPage) mCallbacks.onGetPage(mKey);
+        Log.i("onCreate","onCreate launched!");
     }
 
     @Override
@@ -91,6 +92,7 @@ public class ProfessorCityFromFragment extends Fragment {
 		spnMunicipality = ((Spinner) rootView.findViewById(R.id.spn_your_municipality));
 		spnLocality = ((Spinner) rootView.findViewById(R.id.spn_your_locality));
         setupSpinners();
+        Log.i("onCreateView","onCreateView launched!");
         return rootView;
     }
 
@@ -103,6 +105,7 @@ public class ProfessorCityFromFragment extends Fragment {
         }
 
         mCallbacks = (PageFragmentCallbacks) activity;
+        Log.i("onAttach","onAttach launched!");
     }
 
     @Override
@@ -114,6 +117,7 @@ public class ProfessorCityFromFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.i("onViewCreated","onViewCreated launched!");
     }
 
     @Override
@@ -143,9 +147,8 @@ public class ProfessorCityFromFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-
                 State selectedState = (State)parent.getItemAtPosition(position);
-                if(selectedState.getId() != 0 && getUserVisibleHint()){
+                if(selectedState.getId() != 0){
 
                     showDialog(getString(R.string.please_wait), getString(R.string.main_loading_cities));
                     // Remove localities
@@ -241,7 +244,7 @@ public class ProfessorCityFromFragment extends Fragment {
     }
 
     private void hideDialog() {
-        if(pDlg.isShowing())
+        if(getUserVisibleHint())
             pDlg.dismiss();
     }
 
@@ -249,14 +252,5 @@ public class ProfessorCityFromFragment extends Fragment {
         if (spinner.getAdapter() != null && spinner.getAdapter().getCount() > 0){
             spinner.setAdapter(null);
         }
-    }
-
-    /**
-     * @return The current value of the user-visible hint on this fragment.
-     * @see #setUserVisibleHint(boolean)
-     */
-    @Override
-    public boolean getUserVisibleHint() {
-        return super.getUserVisibleHint();
     }
 }
