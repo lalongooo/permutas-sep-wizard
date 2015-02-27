@@ -237,11 +237,13 @@ public class ProfessorCityToFragment extends Fragment {
     }
 
     private void showDialog(String title, String text) {
-        pDlg = ProgressDialog.show(getActivity(), title, text, true);
+        if(getUserVisibleHint())
+            pDlg = ProgressDialog.show(getActivity(), title, text, true);
     }
 
     private void hideDialog() {
-        pDlg.dismiss();
+        if(pDlg.isShowing())
+            pDlg.dismiss();
     }
 
     private void resetSpinner(Spinner spinner){
