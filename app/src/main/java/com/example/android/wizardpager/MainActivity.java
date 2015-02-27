@@ -117,7 +117,7 @@ public class MainActivity extends FragmentActivity implements
 							}
                         	
                         	for (ReviewItem r : ri) {
-								Log.i(r.getPageKey(), r.getDisplayValue());
+								Log.i(r.getPageKey() == null ? "" : r.getPageKey(), r.getDisplayValue() == null ? "" : r.getDisplayValue());
 							}
                         	
                             return new AlertDialog.Builder(getActivity())
