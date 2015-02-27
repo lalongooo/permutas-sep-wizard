@@ -14,7 +14,9 @@
   limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/WizardPageContainer" >
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/WizardPageContainer"
+    tools:context="com.example.android.wizardpager.wizard.ui.ProfessorCityFromFragment">
 
     <TextView style="@style/WizardPageTitle" />
 
@@ -38,9 +40,9 @@
             <Spinner
                 android:id="@+id/spn_your_state"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:entries="@array/mex_states" />
+                android:layout_height="45dp"
+                android:layout_marginBottom="30dp"
+                android:spinnerMode="dialog"/>
 
             <TextView
                 style="@style/WizardFormLabel"
@@ -49,9 +51,9 @@
             <Spinner
                 android:id="@+id/spn_your_municipality"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:entries="@array/hgo_munic" />
+                android:layout_height="45dp"
+                android:layout_marginBottom="30dp"
+                android:spinnerMode="dialog"/>
 
             <TextView
                 style="@style/WizardFormLabel"
@@ -60,9 +62,9 @@
             <Spinner
                 android:id="@+id/spn_your_locality"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:entries="@array/jaltocan_locality" />
+                android:layout_height="45dp"
+                android:layout_marginBottom="30dp"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
     </ScrollView>
 

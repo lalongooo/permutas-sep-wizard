@@ -17,6 +17,7 @@
 package com.example.android.wizardpager.wizard.ui;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,6 +34,20 @@ import android.widget.TextView;
 import com.example.android.wizardpager.R;
 import com.example.android.wizardpager.wizard.model.Page;
 import com.example.android.wizardpager.wizard.model.ProfessorCityToPage;
+import com.permutassep.inegifacil.model.City;
+import com.permutassep.inegifacil.model.State;
+import com.permutassep.inegifacil.model.Town;
+import com.permutassep.inegifacil.rest.InegiFacilRestClient;
+import com.permutassep.model.CitySpinnerBaseAdapter;
+import com.permutassep.model.StateSpinnerBaseAdapter;
+import com.permutassep.model.TownSpinnerBaseAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class ProfessorCityToFragment extends Fragment {
     private static final String ARG_KEY = "key";
@@ -40,7 +55,8 @@ public class ProfessorCityToFragment extends Fragment {
     private PageFragmentCallbacks mCallbacks;
     private String mKey;
     private Page mPage;
-    
+
+    private ProgressDialog pDlg;
     private Spinner spnState;
     private Spinner spnMunicipality;
     private Spinner spnLocality;
@@ -71,9 +87,10 @@ public class ProfessorCityToFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_page_professor_city_to, container, false);
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
         
-		spnState = ((Spinner) rootView.findViewById(R.id.spn_your_state));
-		spnMunicipality = ((Spinner) rootView.findViewById(R.id.spn_your_municipality));
-		spnLocality = ((Spinner) rootView.findViewById(R.id.spn_your_locality));		
+		spnState = ((Spinner) rootView.findViewById(R.id.spnState));
+		spnMunicipality = ((Spinner) rootView.findViewById(R.id.spnMunicipality));
+		spnLocality = ((Spinner) rootView.findViewById(R.id.spnLocality));
+        setupSpinners();
         
         return rootView;
     }
@@ -98,67 +115,138 @@ public class ProfessorCityToFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-    
-        spnState.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				String selectedItemText = spnState.getSelectedItem().toString();
-				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorCityToPage.STATE_TO_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
-                mPage.notifyDataChanged();
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-				
-			}
-		});
-
-        spnMunicipality.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				String selectedItemText = spnMunicipality.getSelectedItem().toString();
-				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorCityToPage.MUNICIPALITY_TO_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
-                mPage.notifyDataChanged();
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-				
-			}
-		});
-        
-        spnLocality.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				String selectedItemText = spnLocality.getSelectedItem().toString();
-				Log.i("onItemSelected", selectedItemText);
-				mPage.getData().putString(ProfessorCityToPage.LOCALITY_TO_DATA_KEY, (selectedItemText != null) ? selectedItemText.toString() : null);
-                mPage.notifyDataChanged();				
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-				
-			}
-		});
     }
 
     @Override
     public void setMenuVisibility(boolean menuVisible) {
         super.setMenuVisibility(menuVisible);
 
-        // In a future update to the support library, this should override setUserVisibleHint
-        // instead of setMenuVisibility.
-        if (spnLocality != null && spnLocality.getSelectedItem().toString() != null) {
+        // In a future update to the support library, this should override setUserVisibleHint instead of setMenuVisibility.
+        if (spnLocality != null && spnLocality.getSelectedItem() != null) {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (!menuVisible) {
                 imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
             }
+        }
+    }
+
+    private void setupSpinners(){
+
+        ArrayList<State> alStates = new ArrayList<>();
+        String [] states = getResources().getStringArray(R.array.states);
+
+        for (int i = 0; i < states.length; i++){
+            alStates.add(new State(i, states[i]));
+        }
+
+        spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), alStates));
+        spnState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+                State selectedState = (State)parent.getItemAtPosition(position);
+                if(selectedState.getId() != 0  && getUserVisibleHint()){
+
+                    showDialog(getString(R.string.please_wait), getString(R.string.main_loading_cities));
+                    // Remove localities
+                    resetSpinner(spnLocality);
+                    mPage.getData().putString(ProfessorCityToPage.STATE_TO_DATA_KEY, selectedState.getStateName());
+                    mPage.notifyDataChanged();
+
+                    try {
+                        InegiFacilRestClient.get().getCities(String.valueOf(selectedState.getId()), new Callback<List<City>>() {
+                            @Override
+                            public void success(List<City> cities, Response response) {
+                                spnMunicipality.setAdapter(new CitySpinnerBaseAdapter(getActivity(), cities));
+                                hideDialog();
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                hideDialog();
+                            }
+                        });
+
+                    }catch (Exception ex){
+                        Log.d("An error ocurred", ex.getMessage());
+                    }
+                }else{
+                    resetSpinner(spnMunicipality);
+                    resetSpinner(spnLocality);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
+
+
+        spnMunicipality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                City selectedCity = (City) parent.getItemAtPosition(position);
+                if(position != 0){
+
+                    showDialog(getString(R.string.please_wait), getString(R.string.main_loading_localities));
+                    mPage.getData().putString(ProfessorCityToPage.MUNICIPALITY_TO_DATA_KEY, selectedCity.getNombreMunicipio());
+                    mPage.notifyDataChanged();
+
+                    try {
+                        InegiFacilRestClient.get().getTowns(String.valueOf(selectedCity.getClaveEntidad()), String.valueOf(selectedCity.getClaveMunicipio()), new Callback<List<Town>>() {
+                            @Override
+                            public void success(List<Town> towns, Response response) {
+                                spnLocality.setAdapter(new TownSpinnerBaseAdapter(getActivity(), towns));
+                                hideDialog();
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                hideDialog();
+                            }
+                        });
+
+                    }catch (Exception ex){
+                        Log.d("An error ocurred", ex.getMessage());
+                    }
+                }else{
+                    resetSpinner(spnLocality);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
+
+
+        spnLocality.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Town town = (Town) parent.getItemAtPosition(position);
+                mPage.getData().putString(ProfessorCityToPage.LOCALITY_TO_DATA_KEY, (town.getNombre() != null) ? town.getNombre() : null);
+                mPage.notifyDataChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void showDialog(String title, String text) {
+        pDlg = ProgressDialog.show(getActivity(), title, text, true);
+    }
+
+    private void hideDialog() {
+        pDlg.dismiss();
+    }
+
+    private void resetSpinner(Spinner spinner){
+        if (spinner.getAdapter() != null && spinner.getAdapter().getCount() > 0){
+            spinner.setAdapter(null);
         }
     }
 }

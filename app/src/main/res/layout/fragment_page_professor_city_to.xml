@@ -14,7 +14,9 @@
   limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/WizardPageContainer" >
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/WizardPageContainer"
+    tools:context="com.example.android.wizardpager.wizard.ui.ProfessorCityToFragment">
 
     <TextView style="@style/WizardPageTitle" />
 
@@ -36,33 +38,33 @@
                 android:text="@string/label_your_state" />
 
             <Spinner
-                android:id="@+id/spn_your_state"
+                android:id="@+id/spnState"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:entries="@array/mex_states" />
+                android:layout_height="45dp"
+                android:layout_marginBottom="30dp"
+                android:spinnerMode="dialog"/>
 
             <TextView
                 style="@style/WizardFormLabel"
                 android:text="@string/label_your_municipality" />
 
             <Spinner
-                android:id="@+id/spn_your_municipality"
+                android:id="@+id/spnMunicipality"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:entries="@array/hgo_munic" />
+                android:layout_height="45dp"
+                android:layout_marginBottom="30dp"
+                android:spinnerMode="dialog"/>
 
             <TextView
                 style="@style/WizardFormLabel"
                 android:text="@string/label_your_locality" />
 
             <Spinner
-                android:id="@+id/spn_your_locality"
+                android:id="@+id/spnLocality"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:entries="@array/jaltocan_locality" />
+                android:layout_height="45dp"
+                android:layout_marginBottom="30dp"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
     </ScrollView>
 
