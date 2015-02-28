@@ -43,7 +43,6 @@ import com.permutassep.model.StateSpinnerBaseAdapter;
 import com.permutassep.model.TownSpinnerBaseAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -60,9 +59,9 @@ public class ProfessorCityFromFragment extends Fragment {
     private Spinner spnState;
     private Spinner spnMunicipality;
     private Spinner spnLocality;
-    private List<State> mStates = new ArrayList<>();
-    private List<City> mCities = new ArrayList<City>();
-    private List<Town> mTowns = new ArrayList<Town>();
+    private ArrayList<State> mStates = new ArrayList<>();
+    private ArrayList<City> mCities = new ArrayList<City>();
+    private ArrayList<Town> mTowns = new ArrayList<Town>();
 
 
     public static ProfessorCityFromFragment create(String key) {
@@ -159,9 +158,9 @@ public class ProfessorCityFromFragment extends Fragment {
                     mPage.notifyDataChanged();
 
                     try {
-                        InegiFacilRestClient.get().getCities(String.valueOf(selectedState.getId()), new Callback<List<City>>() {
+                        InegiFacilRestClient.get().getCities(String.valueOf(selectedState.getId()), new Callback<ArrayList<City>>() {
                             @Override
-                            public void success(List<City> cities, Response response) {
+                            public void success(ArrayList<City> cities, Response response) {
                                 mCities = cities;
                                 spnMunicipality.setAdapter(new CitySpinnerBaseAdapter(getActivity(), cities));
                                 hideDialog();
@@ -199,9 +198,9 @@ public class ProfessorCityFromFragment extends Fragment {
                     mPage.notifyDataChanged();
 
                     try {
-                        InegiFacilRestClient.get().getTowns(String.valueOf(selectedCity.getClaveEntidad()), String.valueOf(selectedCity.getClaveMunicipio()), new Callback<List<Town>>() {
+                        InegiFacilRestClient.get().getTowns(String.valueOf(selectedCity.getClaveEntidad()), String.valueOf(selectedCity.getClaveMunicipio()), new Callback<ArrayList<Town>>() {
                             @Override
-                            public void success(List<Town> towns, Response response) {
+                            public void success(ArrayList<Town> towns, Response response) {
                                 mTowns = towns;
                                 spnLocality.setAdapter(new TownSpinnerBaseAdapter(getActivity(), towns));
                                 hideDialog();
@@ -261,7 +260,9 @@ public class ProfessorCityFromFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.p
+        outState.putParcelableArrayList("states_from", mStates);
+        outState.putParcelableArrayList("cities_from", mCities);
+        outState.putParcelableArrayList("towns_from", mTowns);
         Log.i("onSaveInstanceState","onSaveInstanceState launched!");
     }
 
