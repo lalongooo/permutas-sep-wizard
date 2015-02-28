@@ -1,9 +1,12 @@
 package com.permutassep.inegifacil.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Town {
+public class Town implements Parcelable {
 
     @Expose
     private int id;
@@ -189,4 +192,21 @@ public class Town {
         this.altitud = altitud;
     }
 
+    @Override
+    public int describeContents() {
+        return Integer.valueOf(id) + Integer.valueOf(municipioClave) + Integer.valueOf(estadoId);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(estadoId);
+        dest.writeString(municipioClave);
+        dest.writeString(municipioId);
+        dest.writeString(clave);
+        dest.writeString(nombre);
+        dest.writeString(latitud);
+        dest.writeString(longitud);
+        dest.writeString(altitud);
+    }
 }

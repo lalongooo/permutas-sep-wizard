@@ -1,13 +1,14 @@
 package com.permutassep.inegifacil.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 
-public class State {
+public class State implements Parcelable {
 
     @Expose
     private int id;
-
-
     private String mStateName;
 
     public State(int id, String stateName) {
@@ -26,5 +27,16 @@ public class State {
     }
     public void setId(int iD) {
         id = iD;
+    }
+
+    @Override
+    public int describeContents() {
+        return id;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(mStateName);
     }
 }
