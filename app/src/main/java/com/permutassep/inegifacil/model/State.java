@@ -39,4 +39,19 @@ public class State implements Parcelable {
         dest.writeInt(id);
         dest.writeString(mStateName);
     }
+
+    class StateParcelableCreator implements Parcelable.Creator<State> {
+        public State createFromParcel(Parcel source) {
+            return new State(source);
+        }
+        public State[] newArray(int size) {
+            return new State[size];
+        }
+    }
+
+    public State(Parcel source) {
+        this.id = source.readInt();
+        this.mStateName = source.readString();
+    }
+
 }

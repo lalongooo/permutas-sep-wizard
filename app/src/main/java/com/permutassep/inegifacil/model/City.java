@@ -295,4 +295,29 @@ public class City implements Parcelable {
         dest.writeString(maxy);
         dest.writeString(lat);
     }
+
+
+    class CityParcelableCreator implements Parcelable.Creator<City> {
+        public City createFromParcel(Parcel source) {
+            return new City(source);
+        }
+        public City[] newArray(int size) {
+            return new City[size];
+        }
+    }
+
+    public City(Parcel source) {
+        this.id = source.readString();
+        this.claveEntidad = source.readString();
+        this.nombreEntidad = source.readString();
+        this.claveMunicipio = source.readInt();
+        this.nombreMunicipio = source.readString();
+        this.claveInegi = source.readString();
+        this.nombreInegi = source.readString();
+        this.minx = source.readString();
+        this.miny = source.readString();
+        this.maxx = source.readString();
+        this.maxy = source.readString();
+        this.lat = source.readString();
+    }
 }

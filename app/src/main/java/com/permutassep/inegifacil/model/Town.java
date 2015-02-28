@@ -209,4 +209,26 @@ public class Town implements Parcelable {
         dest.writeString(longitud);
         dest.writeString(altitud);
     }
+
+
+    class TownParcelableCreator implements Parcelable.Creator<Town> {
+        public Town createFromParcel(Parcel source) {
+            return new Town(source);
+        }
+        public Town[] newArray(int size) {
+            return new Town[size];
+        }
+    }
+
+    public Town(Parcel source) {
+        this.id = source.readInt();
+        this.estadoId = source.readString();
+        this.municipioClave = source.readString();
+        this.municipioId = source.readString();
+        this.clave = source.readString();
+        this.nombre = source.readString();
+        this.latitud = source.readString();
+        this.longitud = source.readString();
+        this.altitud = source.readString();
+    }
 }
