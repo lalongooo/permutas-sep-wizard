@@ -60,6 +60,10 @@ public class ProfessorCityFromFragment extends Fragment {
     private Spinner spnState;
     private Spinner spnMunicipality;
     private Spinner spnLocality;
+    private List<State> mStates = new ArrayList<>();
+    private List<City> mCities = new ArrayList<City>();
+    private List<Town> mTowns = new ArrayList<Town>();
+
 
     public static ProfessorCityFromFragment create(String key) {
         Bundle args = new Bundle();
@@ -135,14 +139,12 @@ public class ProfessorCityFromFragment extends Fragment {
 
     private void setupSpinners(){
 
-        ArrayList<State> alStates = new ArrayList<>();
         String [] states = getResources().getStringArray(R.array.states);
-
         for (int i = 0; i < states.length; i++){
-            alStates.add(new State(i, states[i]));
+            mStates.add(new State(i, states[i]));
         }
 
-        spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), alStates));
+        spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), mStates));
         spnState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -160,6 +162,7 @@ public class ProfessorCityFromFragment extends Fragment {
                         InegiFacilRestClient.get().getCities(String.valueOf(selectedState.getId()), new Callback<List<City>>() {
                             @Override
                             public void success(List<City> cities, Response response) {
+                                mCities = cities;
                                 spnMunicipality.setAdapter(new CitySpinnerBaseAdapter(getActivity(), cities));
                                 hideDialog();
                             }
@@ -199,6 +202,7 @@ public class ProfessorCityFromFragment extends Fragment {
                         InegiFacilRestClient.get().getTowns(String.valueOf(selectedCity.getClaveEntidad()), String.valueOf(selectedCity.getClaveMunicipio()), new Callback<List<Town>>() {
                             @Override
                             public void success(List<Town> towns, Response response) {
+                                mTowns = towns;
                                 spnLocality.setAdapter(new TownSpinnerBaseAdapter(getActivity(), towns));
                                 hideDialog();
                             }
@@ -252,5 +256,24 @@ public class ProfessorCityFromFragment extends Fragment {
         if (spinner.getAdapter() != null && spinner.getAdapter().getCount() > 0){
             spinner.setAdapter(null);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.p
+        Log.i("onSaveInstanceState","onSaveInstanceState launched!");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i("onPause","onPause launched!");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("onResume","onResume launched!");
     }
 }

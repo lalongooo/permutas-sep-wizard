@@ -33,6 +33,6 @@ public class ProfessorCityFromPage extends Page {
 
 	@Override
 	public boolean isCompleted() {
-		return !TextUtils.isEmpty(mData.getString(STATE_DATA_KEY));
+		return !TextUtils.isEmpty(mData.getString(LOCALITY_DATA_KEY));
 	}
 }
