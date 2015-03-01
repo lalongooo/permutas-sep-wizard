@@ -59,9 +59,21 @@ public class ProfessorCityFromFragment extends Fragment {
     private Spinner spnState;
     private Spinner spnMunicipality;
     private Spinner spnLocality;
+
+    public static final String STATES_FROM_KEY = "states_from";
+    public static final String CITIES_FROM_KEY = "cities_from";
+    public static final String TOWNS_FROM_KEY = "towns_from";
     private ArrayList<State> mStates = new ArrayList<>();
-    private ArrayList<City> mCities = new ArrayList<City>();
-    private ArrayList<Town> mTowns = new ArrayList<Town>();
+    private ArrayList<City> mCities = new ArrayList<>();
+    private ArrayList<Town> mTowns = new ArrayList<>();
+
+    public static final String STATE_FROM_SELECTED_KEY = "state_from_selected";
+    public static final String CITY_FROM_SELECTED_KEY = "city_from_selected";
+    public static final String TOWN_FROM_SELECTED_KEY = "town_from_selected";
+    private int stateSelectedPosition = 0;
+    private int citySelectedPosition = 0;
+    private int townSelectedPosition = 0;
+
 
 
     public static ProfessorCityFromFragment create(String key) {
@@ -90,10 +102,29 @@ public class ProfessorCityFromFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_page_professor_city_from, container, false);
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
-        
+
 		spnState = ((Spinner) rootView.findViewById(R.id.spn_your_state));
 		spnMunicipality = ((Spinner) rootView.findViewById(R.id.spn_your_municipality));
 		spnLocality = ((Spinner) rootView.findViewById(R.id.spn_your_locality));
+
+        if(savedInstanceState != null){
+            mStates = savedInstanceState.getParcelableArrayList(STATES_FROM_KEY);
+            mCities = savedInstanceState.getParcelableArrayList(CITIES_FROM_KEY);
+            mTowns = savedInstanceState.getParcelableArrayList(TOWNS_FROM_KEY);
+
+            stateSelectedPosition = savedInstanceState.getInt(STATE_FROM_SELECTED_KEY);
+            citySelectedPosition = savedInstanceState.getInt(CITY_FROM_SELECTED_KEY);
+            townSelectedPosition = savedInstanceState.getInt(TOWN_FROM_SELECTED_KEY);
+
+            spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), mStates));
+            spnMunicipality.setAdapter(new CitySpinnerBaseAdapter(getActivity(), mCities));
+            spnLocality.setAdapter(new TownSpinnerBaseAdapter(getActivity(), mTowns));
+
+            spnState.setSelection(stateSelectedPosition, false);
+            spnMunicipality.setSelection(citySelectedPosition, false);
+            spnLocality.setSelection(townSelectedPosition, false);
+        }
+
         setupSpinners();
         Log.i("onCreateView","onCreateView launched!");
         return rootView;
@@ -149,11 +180,12 @@ public class ProfessorCityFromFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 State selectedState = (State)parent.getItemAtPosition(position);
-                if(selectedState.getId() != 0){
+                if(position != stateSelectedPosition && selectedState.getId() != 0 && mCities.size() == 0) {
 
                     showDialog(getString(R.string.please_wait), getString(R.string.main_loading_cities));
                     // Remove localities
                     resetSpinner(spnLocality);
+                    stateSelectedPosition = position;
                     mPage.getData().putString(ProfessorCityFromPage.STATE_DATA_KEY, selectedState.getStateName());
                     mPage.notifyDataChanged();
 
@@ -176,8 +208,10 @@ public class ProfessorCityFromFragment extends Fragment {
                         Log.d("An error ocurred", ex.getMessage());
                     }
                 }else{
-                    resetSpinner(spnMunicipality);
-                    resetSpinner(spnLocality);
+                    if(selectedState.getId() == 0){
+                        resetSpinner(spnMunicipality);
+                        resetSpinner(spnLocality);
+                    }
                 }
             }
 
@@ -191,9 +225,10 @@ public class ProfessorCityFromFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 City selectedCity = (City) parent.getItemAtPosition(position);
-                if(position != 0 && getUserVisibleHint()){
+                if(citySelectedPosition != position && position != 0 && getUserVisibleHint()){
 
                     showDialog(getString(R.string.please_wait), getString(R.string.main_loading_localities));
+                    citySelectedPosition = position;
                     mPage.getData().putString(ProfessorCityFromPage.MUNICIPALITY_DATA_KEY, selectedCity.getNombreMunicipio());
                     mPage.notifyDataChanged();
 
@@ -216,7 +251,9 @@ public class ProfessorCityFromFragment extends Fragment {
                         Log.d("An error ocurred", ex.getMessage());
                     }
                 }else{
-                    resetSpinner(spnLocality);
+                    if(position != 0){
+                        resetSpinner(spnLocality);
+                    }
                 }
             }
 
@@ -230,6 +267,7 @@ public class ProfessorCityFromFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 Town town = (Town) parent.getItemAtPosition(position);
+                townSelectedPosition = position;
                 mPage.getData().putString(ProfessorCityFromPage.LOCALITY_DATA_KEY, (town.getNombre() != null) ? town.getNombre() : null);
                 mPage.notifyDataChanged();
             }
@@ -247,7 +285,7 @@ public class ProfessorCityFromFragment extends Fragment {
     }
 
     private void hideDialog() {
-        if(getUserVisibleHint())
+        if(getUserVisibleHint() && pDlg != null)
             pDlg.dismiss();
     }
 
@@ -260,9 +298,14 @@ public class ProfessorCityFromFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList("states_from", mStates);
-        outState.putParcelableArrayList("cities_from", mCities);
-        outState.putParcelableArrayList("towns_from", mTowns);
+
+        outState.putParcelableArrayList(ProfessorCityFromFragment.STATES_FROM_KEY, mStates);
+        outState.putParcelableArrayList(ProfessorCityFromFragment.CITIES_FROM_KEY, mCities);
+        outState.putParcelableArrayList(ProfessorCityFromFragment.TOWNS_FROM_KEY, mTowns);
+
+        outState.putInt(ProfessorCityFromFragment.STATE_FROM_SELECTED_KEY, stateSelectedPosition);
+        outState.putInt(ProfessorCityFromFragment.CITY_FROM_SELECTED_KEY, citySelectedPosition);
+        outState.putInt(ProfessorCityFromFragment.TOWN_FROM_SELECTED_KEY, townSelectedPosition);
         Log.i("onSaveInstanceState","onSaveInstanceState launched!");
     }
 
