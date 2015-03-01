@@ -309,15 +309,4 @@ public class ProfessorCityFromFragment extends Fragment {
         Log.i("onSaveInstanceState","onSaveInstanceState launched!");
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.i("onPause","onPause launched!");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.i("onResume","onResume launched!");
-    }
 }
