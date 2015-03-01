@@ -60,6 +60,20 @@ public class ProfessorCityToFragment extends Fragment {
     private Spinner spnMunicipality;
     private Spinner spnLocality;
 
+    public static final String STATES_TO_KEY = "states_to";
+    public static final String CITIES_TO_KEY = "cities_to";
+    public static final String TOWNS_TO_KEY = "towns_to";
+    private ArrayList<State> mStates = new ArrayList<>();
+    private ArrayList<City> mCities = new ArrayList<>();
+    private ArrayList<Town> mTowns = new ArrayList<>();
+
+    public static final String STATE_TO_SELECTED_KEY = "state_to_selected";
+    public static final String CITY_TO_SELECTED_KEY = "city_to_selected";
+    public static final String TOWN_TO_SELECTED_KEY = "town_to_selected";
+    private int stateSelectedPosition = 0;
+    private int citySelectedPosition = 0;
+    private int townSelectedPosition = 0;
+
     public static ProfessorCityToFragment create(String key) {
         Bundle args = new Bundle();
         args.putString(ARG_KEY, key);
@@ -89,8 +103,26 @@ public class ProfessorCityToFragment extends Fragment {
 		spnState = ((Spinner) rootView.findViewById(R.id.spnState));
 		spnMunicipality = ((Spinner) rootView.findViewById(R.id.spnMunicipality));
 		spnLocality = ((Spinner) rootView.findViewById(R.id.spnLocality));
+
+        if(savedInstanceState != null){
+            mStates = savedInstanceState.getParcelableArrayList(STATES_TO_KEY);
+            mCities = savedInstanceState.getParcelableArrayList(CITIES_TO_KEY);
+            mTowns = savedInstanceState.getParcelableArrayList(TOWNS_TO_KEY);
+
+            stateSelectedPosition = savedInstanceState.getInt(STATE_TO_SELECTED_KEY);
+            citySelectedPosition = savedInstanceState.getInt(CITY_TO_SELECTED_KEY);
+            townSelectedPosition = savedInstanceState.getInt(TOWN_TO_SELECTED_KEY);
+
+            spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), mStates));
+            spnMunicipality.setAdapter(new CitySpinnerBaseAdapter(getActivity(), mCities));
+            spnLocality.setAdapter(new TownSpinnerBaseAdapter(getActivity(), mTowns));
+
+            spnState.setSelection(stateSelectedPosition, false);
+            spnMunicipality.setSelection(citySelectedPosition, false);
+            spnLocality.setSelection(townSelectedPosition, false);
+        }
+
         setupSpinners();
-        
         return rootView;
     }
 
@@ -131,25 +163,26 @@ public class ProfessorCityToFragment extends Fragment {
 
     private void setupSpinners(){
 
-        ArrayList<State> alStates = new ArrayList<>();
-        String [] states = getResources().getStringArray(R.array.states);
-
-        for (int i = 0; i < states.length; i++){
-            alStates.add(new State(i, states[i]));
+        if(spnState.getAdapter() == null){
+            String [] states = getResources().getStringArray(R.array.states);
+            for (int i = 0; i < states.length; i++){
+                mStates.add(new State(i, states[i]));
+            }
+            spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), mStates));
         }
 
-        spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), alStates));
+        spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), mStates));
         spnState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-
                 State selectedState = (State)parent.getItemAtPosition(position);
-                if(selectedState.getId() != 0){
+                if(position != stateSelectedPosition && selectedState.getId() != 0) {
 
                     showDialog(getString(R.string.please_wait), getString(R.string.main_loading_cities));
                     // Remove localities
                     resetSpinner(spnLocality);
+                    stateSelectedPosition = position;
                     mPage.getData().putString(ProfessorCityToPage.STATE_TO_DATA_KEY, selectedState.getStateName());
                     mPage.notifyDataChanged();
 
@@ -157,6 +190,7 @@ public class ProfessorCityToFragment extends Fragment {
                         InegiFacilRestClient.get().getCities(String.valueOf(selectedState.getId()), new Callback<ArrayList<City>>() {
                             @Override
                             public void success(ArrayList<City> cities, Response response) {
+                                mCities = cities;
                                 spnMunicipality.setAdapter(new CitySpinnerBaseAdapter(getActivity(), cities));
                                 hideDialog();
                             }
@@ -171,8 +205,10 @@ public class ProfessorCityToFragment extends Fragment {
                         Log.d("An error ocurred", ex.getMessage());
                     }
                 }else{
-                    resetSpinner(spnMunicipality);
-                    resetSpinner(spnLocality);
+                    if(selectedState.getId() == 0){
+                        resetSpinner(spnMunicipality);
+                        resetSpinner(spnLocality);
+                    }
                 }
             }
 
@@ -186,9 +222,10 @@ public class ProfessorCityToFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 City selectedCity = (City) parent.getItemAtPosition(position);
-                if(position != 0){
+                if(citySelectedPosition != position && position != 0 && getUserVisibleHint()){
 
                     showDialog(getString(R.string.please_wait), getString(R.string.main_loading_localities));
+                    citySelectedPosition = position;
                     mPage.getData().putString(ProfessorCityToPage.MUNICIPALITY_TO_DATA_KEY, selectedCity.getNombreMunicipio());
                     mPage.notifyDataChanged();
 
@@ -196,6 +233,7 @@ public class ProfessorCityToFragment extends Fragment {
                         InegiFacilRestClient.get().getTowns(String.valueOf(selectedCity.getClaveEntidad()), String.valueOf(selectedCity.getClaveMunicipio()), new Callback<ArrayList<Town>>() {
                             @Override
                             public void success(ArrayList<Town> towns, Response response) {
+                                mTowns = towns;
                                 spnLocality.setAdapter(new TownSpinnerBaseAdapter(getActivity(), towns));
                                 hideDialog();
                             }
@@ -210,7 +248,9 @@ public class ProfessorCityToFragment extends Fragment {
                         Log.d("An error ocurred", ex.getMessage());
                     }
                 }else{
-                    resetSpinner(spnLocality);
+                    if(position != 0){
+                        resetSpinner(spnLocality);
+                    }
                 }
             }
 
@@ -224,6 +264,7 @@ public class ProfessorCityToFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 Town town = (Town) parent.getItemAtPosition(position);
+                townSelectedPosition = position;
                 mPage.getData().putString(ProfessorCityToPage.LOCALITY_TO_DATA_KEY, (town.getNombre() != null) ? town.getNombre() : null);
                 mPage.notifyDataChanged();
             }
@@ -241,7 +282,7 @@ public class ProfessorCityToFragment extends Fragment {
     }
 
     private void hideDialog() {
-        if(getUserVisibleHint())
+        if(getUserVisibleHint() && pDlg != null)
             pDlg.dismiss();
     }
 
@@ -249,5 +290,19 @@ public class ProfessorCityToFragment extends Fragment {
         if (spinner.getAdapter() != null && spinner.getAdapter().getCount() > 0){
             spinner.setAdapter(null);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelableArrayList(ProfessorCityToFragment.STATES_TO_KEY, mStates);
+        outState.putParcelableArrayList(ProfessorCityToFragment.CITIES_TO_KEY, mCities);
+        outState.putParcelableArrayList(ProfessorCityToFragment.TOWNS_TO_KEY, mTowns);
+
+        outState.putInt(ProfessorCityToFragment.STATE_TO_SELECTED_KEY, stateSelectedPosition);
+        outState.putInt(ProfessorCityToFragment.CITY_TO_SELECTED_KEY, citySelectedPosition);
+        outState.putInt(ProfessorCityToFragment.TOWN_TO_SELECTED_KEY, townSelectedPosition);
+        Log.i("onSaveInstanceState","onSaveInstanceState launched!");
     }
 }

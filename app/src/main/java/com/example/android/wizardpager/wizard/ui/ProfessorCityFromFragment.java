@@ -169,18 +169,20 @@ public class ProfessorCityFromFragment extends Fragment {
 
     private void setupSpinners(){
 
-        String [] states = getResources().getStringArray(R.array.states);
-        for (int i = 0; i < states.length; i++){
-            mStates.add(new State(i, states[i]));
+        if(spnState.getAdapter() == null){
+            String [] states = getResources().getStringArray(R.array.states);
+            for (int i = 0; i < states.length; i++){
+                mStates.add(new State(i, states[i]));
+            }
+            spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), mStates));
         }
 
-        spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), mStates));
         spnState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 State selectedState = (State)parent.getItemAtPosition(position);
-                if(position != stateSelectedPosition && selectedState.getId() != 0 && mCities.size() == 0) {
+                if(position != stateSelectedPosition && selectedState.getId() != 0) {
 
                     showDialog(getString(R.string.please_wait), getString(R.string.main_loading_cities));
                     // Remove localities
