@@ -38,9 +38,9 @@ import com.permutassep.inegifacil.model.City;
 import com.permutassep.inegifacil.model.State;
 import com.permutassep.inegifacil.model.Town;
 import com.permutassep.inegifacil.rest.InegiFacilRestClient;
-import com.permutassep.model.CitySpinnerBaseAdapter;
-import com.permutassep.model.StateSpinnerBaseAdapter;
-import com.permutassep.model.TownSpinnerBaseAdapter;
+import com.permutassep.adapter.CitySpinnerBaseAdapter;
+import com.permutassep.adapter.StateSpinnerBaseAdapter;
+import com.permutassep.adapter.TownSpinnerBaseAdapter;
 
 import java.util.ArrayList;
 

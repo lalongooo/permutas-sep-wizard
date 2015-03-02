@@ -1,4 +1,4 @@
-package com.permutassep.model;
+package com.permutassep.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
