@@ -74,8 +74,6 @@ public class ProfessorCityFromFragment extends Fragment {
     private int citySelectedPosition = 0;
     private int townSelectedPosition = 0;
 
-
-
     public static ProfessorCityFromFragment create(String key) {
         Bundle args = new Bundle();
         args.putString(ARG_KEY, key);
@@ -116,17 +114,23 @@ public class ProfessorCityFromFragment extends Fragment {
             citySelectedPosition = savedInstanceState.getInt(CITY_FROM_SELECTED_KEY);
             townSelectedPosition = savedInstanceState.getInt(TOWN_FROM_SELECTED_KEY);
 
-            spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), mStates));
-            spnMunicipality.setAdapter(new CitySpinnerBaseAdapter(getActivity(), mCities));
-            spnLocality.setAdapter(new TownSpinnerBaseAdapter(getActivity(), mTowns));
+            if(mStates.size() > 0){
+                spnState.setAdapter(new StateSpinnerBaseAdapter(getActivity(), mStates));
+                spnState.setSelection(stateSelectedPosition, false);
+            }
 
-            spnState.setSelection(stateSelectedPosition, false);
-            spnMunicipality.setSelection(citySelectedPosition, false);
-            spnLocality.setSelection(townSelectedPosition, false);
+            if(mCities.size() > 0){
+                spnMunicipality.setAdapter(new CitySpinnerBaseAdapter(getActivity(), mCities));
+                spnMunicipality.setSelection(citySelectedPosition, false);
+            }
+
+            if(mTowns.size() > 0){
+                spnLocality.setAdapter(new TownSpinnerBaseAdapter(getActivity(), mTowns));
+                spnLocality.setSelection(townSelectedPosition, false);
+            }
+
         }
-
         setupSpinners();
-        Log.i("onCreateView","onCreateView launched!");
         return rootView;
     }
 
@@ -187,8 +191,14 @@ public class ProfessorCityFromFragment extends Fragment {
                     showDialog(getString(R.string.please_wait), getString(R.string.main_loading_cities));
                     // Remove localities
                     resetSpinner(spnLocality);
+                    mCities.clear();
+                    mTowns.clear();
                     stateSelectedPosition = position;
+                    citySelectedPosition = 0;
+                    townSelectedPosition = 0;
                     mPage.getData().putString(ProfessorCityFromPage.STATE_DATA_KEY, selectedState.getStateName());
+                    mPage.getData().remove(ProfessorCityFromPage.MUNICIPALITY_DATA_KEY);
+                    mPage.getData().remove(ProfessorCityFromPage.LOCALITY_DATA_KEY);
                     mPage.notifyDataChanged();
 
                     try {
@@ -230,8 +240,11 @@ public class ProfessorCityFromFragment extends Fragment {
                 if(citySelectedPosition != position && position != 0 && getUserVisibleHint()){
 
                     showDialog(getString(R.string.please_wait), getString(R.string.main_loading_localities));
+                    mTowns.clear();
                     citySelectedPosition = position;
+                    townSelectedPosition = 0;
                     mPage.getData().putString(ProfessorCityFromPage.MUNICIPALITY_DATA_KEY, selectedCity.getNombreMunicipio());
+                    mPage.getData().remove(ProfessorCityFromPage.LOCALITY_DATA_KEY);
                     mPage.notifyDataChanged();
 
                     try {
@@ -250,7 +263,7 @@ public class ProfessorCityFromFragment extends Fragment {
                         });
 
                     }catch (Exception ex){
-                        Log.d("An error ocurred", ex.getMessage());
+                        Log.d("An error occurred", ex.getMessage());
                     }
                 }else{
                     if(position != 0){
