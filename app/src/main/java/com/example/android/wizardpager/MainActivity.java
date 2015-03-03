@@ -16,11 +16,9 @@
 
 package com.example.android.wizardpager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -28,7 +26,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,10 +34,20 @@ import android.widget.Button;
 import com.example.android.wizardpager.wizard.model.AbstractWizardModel;
 import com.example.android.wizardpager.wizard.model.ModelCallbacks;
 import com.example.android.wizardpager.wizard.model.Page;
-import com.example.android.wizardpager.wizard.model.ReviewItem;
+import com.example.android.wizardpager.wizard.model.ProfessorCityFromPage;
+import com.example.android.wizardpager.wizard.model.ProfessorCityToPage;
+import com.example.android.wizardpager.wizard.model.ProfessorContactInfoPage;
 import com.example.android.wizardpager.wizard.ui.PageFragmentCallbacks;
 import com.example.android.wizardpager.wizard.ui.ReviewFragment;
 import com.example.android.wizardpager.wizard.ui.StepPagerStrip;
+import com.permutassep.inegifacil.model.City;
+import com.permutassep.inegifacil.model.State;
+import com.permutassep.inegifacil.model.Town;
+import com.permutassep.model.Post;
+import com.permutassep.model.User;
+
+import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends FragmentActivity implements
         PageFragmentCallbacks,
@@ -110,19 +117,49 @@ public class MainActivity extends FragmentActivity implements
                     DialogFragment dg = new DialogFragment() {
                         @Override
                         public Dialog onCreateDialog(Bundle savedInstanceState) {
-                        	
-                        	ArrayList<ReviewItem> ri = new ArrayList<ReviewItem>(); 
-                        	for (Page p : mWizardModel.getCurrentPageSequence()) {
-                        		p.getReviewItems(ri);
-							}
-                        	
-                        	for (ReviewItem r : ri) {
-								Log.i(r.getPageKey() == null ? "" : r.getPageKey(), r.getDisplayValue() == null ? "" : r.getDisplayValue());
-							}
-                        	
                             return new AlertDialog.Builder(getActivity())
                                     .setMessage(R.string.submit_confirm_message)
-                                    .setPositiveButton(R.string.submit_confirm_button, null)
+                                    .setPositiveButton(R.string.submit_confirm_button, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                            Post post = new Post();
+                                            post.setPostDate(new Date());
+
+                                            for (Page p : mWizardModel.getCurrentPageSequence()) {
+                                                switch (p.getKey()){
+                                                    case PermutaSepWizardModel.CONTACT_INFO_KEY:
+                                                        User user = new User(
+                                                                p.getData().getString(ProfessorContactInfoPage.NAME_DATA_KEY),
+                                                                p.getData().getString(ProfessorContactInfoPage.EMAIL_DATA_KEY),
+                                                                p.getData().getString(ProfessorContactInfoPage.PHONE_DATA_KEY)
+                                                        );
+                                                        post.setUser(user);
+                                                        break;
+                                                    case PermutaSepWizardModel.CITY_FROM_KEY:
+                                                        post.setStateFrom((State) p.getData().getParcelable(ProfessorCityFromPage.STATE_DATA_KEY));
+                                                        post.setCityFrom((City) p.getData().getParcelable(ProfessorCityFromPage.MUNICIPALITY_DATA_KEY));
+                                                        post.setTownFrom((Town) p.getData().getParcelable(ProfessorCityFromPage.LOCALITY_DATA_KEY));
+                                                        break;
+                                                    case PermutaSepWizardModel.CITY_TO_KEY:
+                                                        post.setStateTo((State) p.getData().getParcelable(ProfessorCityToPage.STATE_TO_DATA_KEY));
+                                                        post.setCityTo((City) p.getData().getParcelable(ProfessorCityToPage.MUNICIPALITY_TO_DATA_KEY));
+                                                        post.setTownTo((Town) p.getData().getParcelable(ProfessorCityToPage.LOCALITY_TO_DATA_KEY));
+                                                        break;
+                                                    case PermutaSepWizardModel.POSITION_TYPE_KEY:
+                                                        post.setPositionType(p.getData().getString(p.SIMPLE_DATA_KEY));
+                                                        break;
+                                                    case PermutaSepWizardModel.WORKDAY_TYPE_KEY:
+                                                        post.setWorkdayType(p.getData().getString(p.SIMPLE_DATA_KEY));
+                                                        break;
+                                                    case PermutaSepWizardModel.TEACHING_CAREER_KEY:
+                                                        post.setIsTeachingCareer(p.getData().getString(p.SIMPLE_DATA_KEY).equals("Si") ? true : false);
+                                                        break;
+                                                }
+                                            }
+
+                                        }
+                                    })
                                     .setNegativeButton(android.R.string.cancel, null)
                                     .create();
                         }
