@@ -243,7 +243,7 @@ public class ProfessorCityFromFragment extends Fragment {
                     mTowns.clear();
                     citySelectedPosition = position;
                     townSelectedPosition = 0;
-                    mPage.getData().putString(ProfessorCityFromPage.MUNICIPALITY_DATA_KEY, selectedCity.getNombreMunicipio());
+                    mPage.getData().putParcelable(ProfessorCityFromPage.MUNICIPALITY_DATA_KEY, selectedCity);
                     mPage.getData().remove(ProfessorCityFromPage.LOCALITY_DATA_KEY);
                     mPage.notifyDataChanged();
 
@@ -283,7 +283,7 @@ public class ProfessorCityFromFragment extends Fragment {
 
                 Town town = (Town) parent.getItemAtPosition(position);
                 townSelectedPosition = position;
-                mPage.getData().putString(ProfessorCityFromPage.LOCALITY_DATA_KEY, (town.getNombre() != null) ? town.getNombre() : null);
+                mPage.getData().putParcelable(ProfessorCityFromPage.LOCALITY_DATA_KEY, town);
                 mPage.notifyDataChanged();
             }
 

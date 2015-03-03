@@ -42,6 +42,6 @@ public class ProfessorCityToPage extends Page {
 
 	@Override
 	public boolean isCompleted() {
-		return !TextUtils.isEmpty(mData.getString(LOCALITY_TO_DATA_KEY));
+		return mData.containsKey(LOCALITY_TO_DATA_KEY);
 	}
 }
