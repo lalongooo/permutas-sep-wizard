@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.permutassep.inegifacil.model.Town;
+import com.permutassep.model.Town;
 
 import java.util.ArrayList;
 import java.util.List;

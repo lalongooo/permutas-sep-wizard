@@ -1,12 +1,11 @@
 package com.example.android.wizardpager.wizard.model;
 
 import com.example.android.wizardpager.wizard.ui.ProfessorCityFromFragment;
-import com.permutassep.inegifacil.model.City;
-import com.permutassep.inegifacil.model.State;
-import com.permutassep.inegifacil.model.Town;
+import com.permutassep.model.City;
+import com.permutassep.model.State;
+import com.permutassep.model.Town;
 
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 
 import java.util.ArrayList;
 

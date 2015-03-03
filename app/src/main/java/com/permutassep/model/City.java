@@ -1,4 +1,4 @@
-package com.permutassep.inegifacil.model;
+package com.permutassep.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -40,9 +40,9 @@ import com.example.android.wizardpager.wizard.model.ProfessorContactInfoPage;
 import com.example.android.wizardpager.wizard.ui.PageFragmentCallbacks;
 import com.example.android.wizardpager.wizard.ui.ReviewFragment;
 import com.example.android.wizardpager.wizard.ui.StepPagerStrip;
-import com.permutassep.inegifacil.model.City;
-import com.permutassep.inegifacil.model.State;
-import com.permutassep.inegifacil.model.Town;
+import com.permutassep.model.City;
+import com.permutassep.model.State;
+import com.permutassep.model.Town;
 import com.permutassep.model.Post;
 import com.permutassep.model.User;
 

@@ -2,14 +2,13 @@ package com.example.android.wizardpager.wizard.model;
 
 
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 
 import java.util.ArrayList;
 
 import com.example.android.wizardpager.wizard.ui.ProfessorCityToFragment;
-import com.permutassep.inegifacil.model.City;
-import com.permutassep.inegifacil.model.State;
-import com.permutassep.inegifacil.model.Town;
+import com.permutassep.model.City;
+import com.permutassep.model.State;
+import com.permutassep.model.Town;
 
 /**
  * A page asking for a name and an email.

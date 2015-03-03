@@ -1,9 +1,5 @@
 package com.permutassep.model;
 
-import com.permutassep.inegifacil.model.City;
-import com.permutassep.inegifacil.model.State;
-import com.permutassep.inegifacil.model.Town;
-
 import java.util.Date;
 
 /**

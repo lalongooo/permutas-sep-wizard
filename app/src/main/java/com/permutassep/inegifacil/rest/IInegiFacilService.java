@@ -1,7 +1,7 @@
 package com.permutassep.inegifacil.rest;
 
-import com.permutassep.inegifacil.model.City;
-import com.permutassep.inegifacil.model.Town;
+import com.permutassep.model.City;
+import com.permutassep.model.Town;
 
 import java.util.ArrayList;
 
