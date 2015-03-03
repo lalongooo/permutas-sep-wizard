@@ -231,4 +231,19 @@ public class Town implements Parcelable {
         this.longitud = source.readString();
         this.altitud = source.readString();
     }
+
+    @Override
+    public String toString() {
+        return "Town{" +
+                "id=" + id +
+                ", estadoId='" + estadoId + '\'' +
+                ", municipioClave='" + municipioClave + '\'' +
+                ", municipioId='" + municipioId + '\'' +
+                ", clave='" + clave + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", latitud='" + latitud + '\'' +
+                ", longitud='" + longitud + '\'' +
+                ", altitud='" + altitud + '\'' +
+                '}';
+    }
 }

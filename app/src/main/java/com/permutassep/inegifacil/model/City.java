@@ -320,4 +320,23 @@ public class City implements Parcelable {
         this.maxy = source.readString();
         this.lat = source.readString();
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id='" + id + '\'' +
+                ", claveEntidad='" + claveEntidad + '\'' +
+                ", nombreEntidad='" + nombreEntidad + '\'' +
+                ", claveMunicipio=" + claveMunicipio +
+                ", nombreMunicipio='" + nombreMunicipio + '\'' +
+                ", claveInegi='" + claveInegi + '\'' +
+                ", nombreInegi='" + nombreInegi + '\'' +
+                ", minx='" + minx + '\'' +
+                ", miny='" + miny + '\'' +
+                ", maxx='" + maxx + '\'' +
+                ", maxy='" + maxy + '\'' +
+                ", lat='" + lat + '\'' +
+                ", lng='" + lng + '\'' +
+                '}';
+    }
 }

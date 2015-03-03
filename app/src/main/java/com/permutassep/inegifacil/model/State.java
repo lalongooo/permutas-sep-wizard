@@ -54,4 +54,11 @@ public class State implements Parcelable {
         this.mStateName = source.readString();
     }
 
+    @Override
+    public String toString() {
+        return "State{" +
+                "id=" + id +
+                ", mStateName='" + mStateName + '\'' +
+                '}';
+    }
 }

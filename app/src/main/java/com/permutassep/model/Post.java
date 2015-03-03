@@ -24,7 +24,7 @@ public class Post {
     private String mPositionType;
     private String mWorkdayType;
 
-    private String mIsTeachingCareer;
+    private boolean mIsTeachingCareer;
 
     private Date mPostDate;
 
@@ -100,11 +100,11 @@ public class Post {
         this.mWorkdayType = workdayType;
     }
 
-    public String getIsTeachingCareer() {
+    public boolean isTeachingCareer() {
         return mIsTeachingCareer;
     }
 
-    public void setIsTeachingCareer(String isTeachingCareer) {
+    public void setIsTeachingCareer(boolean isTeachingCareer) {
         this.mIsTeachingCareer = isTeachingCareer;
     }
 
@@ -114,5 +114,22 @@ public class Post {
 
     public void setPostDate(Date postDate) {
         this.mPostDate = postDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "mUser=" + mUser +
+                ", mStateFrom=" + mStateFrom +
+                ", mCityFrom=" + mCityFrom +
+                ", mTownFrom=" + mTownFrom +
+                ", mStateTo=" + mStateTo +
+                ", mCityTo=" + mCityTo +
+                ", mTownTo=" + mTownTo +
+                ", mPositionType='" + mPositionType + '\'' +
+                ", mWorkdayType='" + mWorkdayType + '\'' +
+                ", mIsTeachingCareer=" + mIsTeachingCareer +
+                ", mPostDate=" + mPostDate +
+                '}';
     }
 }
