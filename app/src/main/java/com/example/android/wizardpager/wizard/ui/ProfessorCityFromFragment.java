@@ -196,7 +196,7 @@ public class ProfessorCityFromFragment extends Fragment {
                     stateSelectedPosition = position;
                     citySelectedPosition = 0;
                     townSelectedPosition = 0;
-                    mPage.getData().putString(ProfessorCityFromPage.STATE_DATA_KEY, selectedState.getStateName());
+                    mPage.getData().putParcelable(ProfessorCityFromPage.STATE_DATA_KEY, selectedState);
                     mPage.getData().remove(ProfessorCityFromPage.MUNICIPALITY_DATA_KEY);
                     mPage.getData().remove(ProfessorCityFromPage.LOCALITY_DATA_KEY);
                     mPage.notifyDataChanged();

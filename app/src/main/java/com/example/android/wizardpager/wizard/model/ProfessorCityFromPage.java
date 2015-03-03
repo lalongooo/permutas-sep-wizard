@@ -1,6 +1,9 @@
 package com.example.android.wizardpager.wizard.model;
 
 import com.example.android.wizardpager.wizard.ui.ProfessorCityFromFragment;
+import com.permutassep.inegifacil.model.City;
+import com.permutassep.inegifacil.model.State;
+import com.permutassep.inegifacil.model.Town;
 
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -26,9 +29,14 @@ public class ProfessorCityFromPage extends Page {
 
 	@Override
 	public void getReviewItems(ArrayList<ReviewItem> dest) {
-		dest.add(new ReviewItem("TU ESTADO DE ORIGEN", mData.getString(STATE_DATA_KEY), STATE_DATA_KEY, -1));
-		dest.add(new ReviewItem("TU MUNICIPIO DE ORIGEN", mData.getString(MUNICIPALITY_DATA_KEY), MUNICIPALITY_DATA_KEY, -1));
-		dest.add(new ReviewItem("TU LOCALIDAD DE ORIGEN", mData.getString(LOCALITY_DATA_KEY), LOCALITY_DATA_KEY, -1));
+        State state = (State) mData.getParcelable(STATE_DATA_KEY);
+		dest.add(new ReviewItem("ESTADO ORIGEN", state.getStateName(), STATE_DATA_KEY, -1));
+
+        City city = (City) mData.getParcelable(MUNICIPALITY_DATA_KEY);
+        dest.add(new ReviewItem("MUNICIPIO ORIGEN", city.getNombreMunicipio(), MUNICIPALITY_DATA_KEY, -1));
+
+        Town town = (Town) mData.getParcelable(LOCALITY_DATA_KEY);
+		dest.add(new ReviewItem("LOCALIDAD ORIGEN", town.getNombre(), LOCALITY_DATA_KEY, -1));
 	}
 
 	@Override

@@ -7,6 +7,9 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 
 import com.example.android.wizardpager.wizard.ui.ProfessorCityToFragment;
+import com.permutassep.inegifacil.model.City;
+import com.permutassep.inegifacil.model.State;
+import com.permutassep.inegifacil.model.Town;
 
 /**
  * A page asking for a name and an email.
@@ -27,9 +30,14 @@ public class ProfessorCityToPage extends Page {
 
 	@Override
 	public void getReviewItems(ArrayList<ReviewItem> dest) {
-		dest.add(new ReviewItem("TU ESTADO DESEADO", mData.getString(STATE_TO_DATA_KEY), STATE_TO_DATA_KEY, -1));
-		dest.add(new ReviewItem("TU MUNICIPIO DESEADO", mData.getString(MUNICIPALITY_TO_DATA_KEY), MUNICIPALITY_TO_DATA_KEY, -1));
-		dest.add(new ReviewItem("TU LOCALIDAD DESEADO", mData.getString(LOCALITY_TO_DATA_KEY), LOCALITY_TO_DATA_KEY, -1));
+        State state = (State) mData.getParcelable(STATE_TO_DATA_KEY);
+		dest.add(new ReviewItem("ESTADO DESEADO", state.getStateName(), STATE_TO_DATA_KEY, -1));
+
+        City city = (City) mData.getParcelable(MUNICIPALITY_TO_DATA_KEY);
+        dest.add(new ReviewItem("MUNICIPIO DESEADO", city.getNombreMunicipio(), MUNICIPALITY_TO_DATA_KEY, -1));
+
+        Town town = (Town) mData.getParcelable(LOCALITY_TO_DATA_KEY);
+		dest.add(new ReviewItem("LOCALIDAD DESEADO", town.getNombre(), LOCALITY_TO_DATA_KEY, -1));
 	}
 
 	@Override
