@@ -15,9 +15,34 @@
   -->
 
 <resources>
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="textAppearanceFinish">@style/TextAppearanceFinish</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="actionBarStyle">@style/PermutasSEP.ActionBar</item>
+        <item name="android:editTextStyle">@style/PermutaSep.EditTextStyle</item>
+
     </style>
+
+
+    <!--Start EditText style-->
+    <style name="PermutaSep.EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">#fff</item>
+    </style>
+    <!--End EditText style-->
+
+
+
+    <!--Start ActionBar style-->
+    <style name="PermutasSEP.ActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="titleTextStyle">@style/PermutasSEP.ActionBar.TitleTextStyle</item>
+        <item name="background">@color/colorPrimary</item>
+    </style>
+    <style name="PermutasSEP.ActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/windowBackground</item>
+    </style>
+    <!--End ActionBar style-->
 
     <style name="TextAppearanceFinish" parent="android:TextAppearance.Holo.Medium">
         <item name="android:textColor">#fff</item>
@@ -38,7 +63,7 @@
         <item name="android:layout_marginRight">16dp</item>
         <item name="android:paddingLeft">?android:attr/listPreferredItemPaddingLeft</item>
         <item name="android:textSize">36sp</item>
-        <item name="android:textColor">#ff0099cc</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:fontFamily">sans-serif-thin</item>
     </style>
 
@@ -47,7 +72,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">0dp</item>
         <item name="android:textAppearance">?android:textAppearanceSmall</item>
-        <item name="android:textColor">@color/text_light</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:paddingLeft">12dp</item>
