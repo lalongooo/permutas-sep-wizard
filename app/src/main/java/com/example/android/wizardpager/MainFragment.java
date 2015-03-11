@@ -27,6 +27,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -49,7 +50,7 @@ import com.permutassep.model.User;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends ActionBarActivity implements
+public class MainFragment extends Fragment implements
         PageFragmentCallbacks,
         ReviewFragment.Callbacks,
         ModelCallbacks {
@@ -58,7 +59,7 @@ public class MainActivity extends ActionBarActivity implements
 
     private boolean mEditingAfterReview;
 
-    private AbstractWizardModel mWizardModel = new PermutaSepWizardModel(this);
+    private AbstractWizardModel mWizardModel = new PermutaSepWizardModel(getActivity());
 
     private boolean mConsumePageSelectedEvent;
 
@@ -68,9 +69,9 @@ public class MainActivity extends ActionBarActivity implements
     private List<Page> mCurrentPageSequence;
     private StepPagerStrip mStepPagerStrip;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         if (savedInstanceState != null) {
             mWizardModel.load(savedInstanceState.getBundle("model"));
@@ -78,10 +79,10 @@ public class MainActivity extends ActionBarActivity implements
 
         mWizardModel.registerListener(this);
 
-        mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
-        mPager = (ViewPager) findViewById(R.id.pager);
+        mPagerAdapter = new MyPagerAdapter(getActivity().getSupportFragmentManager());
+        mPager = (ViewPager) rootView.findViewById(R.id.pager);
         mPager.setAdapter(mPagerAdapter);
-        mStepPagerStrip = (StepPagerStrip) findViewById(R.id.strip);
+        mStepPagerStrip = (StepPagerStrip) rootView.findViewById(R.id.strip);
         mStepPagerStrip.setOnPageSelectedListener(new StepPagerStrip.OnPageSelectedListener() {
             @Override
             public void onPageStripSelected(int position) {
@@ -92,8 +93,8 @@ public class MainActivity extends ActionBarActivity implements
             }
         });
 
-        mNextButton = (Button) findViewById(R.id.next_button);
-        mPrevButton = (Button) findViewById(R.id.prev_button);
+        mNextButton = (Button) rootView.findViewById(R.id.next_button);
+        mPrevButton = (Button) rootView.findViewById(R.id.prev_button);
 
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -164,7 +165,7 @@ public class MainActivity extends ActionBarActivity implements
                                     .create();
                         }
                     };
-                    dg.show(getSupportFragmentManager(), "place_order_dialog");
+                    dg.show(getActivity().getSupportFragmentManager(), "place_order_dialog");
                 } else {
                     if (mEditingAfterReview) {
                         mPager.setCurrentItem(mPagerAdapter.getCount() - 1);
@@ -184,6 +185,8 @@ public class MainActivity extends ActionBarActivity implements
 
         onPageTreeChanged();
         updateBottomBar();
+
+        return rootView;
     }
 
     @Override
@@ -200,15 +203,15 @@ public class MainActivity extends ActionBarActivity implements
         if (position == mCurrentPageSequence.size()) {
             mNextButton.setText(R.string.finish);
             mNextButton.setBackgroundResource(R.drawable.finish_background);
-            mNextButton.setTextAppearance(this, R.style.TextAppearanceFinish);
+            mNextButton.setTextAppearance(getActivity(), R.style.TextAppearanceFinish);
         } else {
             mNextButton.setText(mEditingAfterReview
                     ? R.string.review
                     : R.string.next);
             mNextButton.setBackgroundResource(R.drawable.selectable_item_background);
             TypedValue v = new TypedValue();
-            getTheme().resolveAttribute(android.R.attr.textAppearanceMedium, v, true);
-            mNextButton.setTextAppearance(this, v.resourceId);
+            getActivity().getTheme().resolveAttribute(android.R.attr.textAppearanceMedium, v, true);
+            mNextButton.setTextAppearance(getActivity(), v.resourceId);
             mNextButton.setEnabled(position != mPagerAdapter.getCutOffPage());
         }
 
@@ -216,13 +219,13 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         mWizardModel.unregisterListener(this);
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBundle("model", mWizardModel.save());
     }

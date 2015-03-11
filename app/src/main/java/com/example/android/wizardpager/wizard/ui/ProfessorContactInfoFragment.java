@@ -29,6 +29,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.example.android.wizardpager.R;
+import com.example.android.wizardpager.wizard.MainActivity;
 import com.example.android.wizardpager.wizard.model.ProfessorContactInfoPage;
 
 public class ProfessorContactInfoFragment extends Fragment {
@@ -83,11 +84,11 @@ public class ProfessorContactInfoFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        if (!(activity instanceof PageFragmentCallbacks)) {
+        if (!(((MainActivity) activity).getSupportFragmentManager().getFragments().get(0) instanceof PageFragmentCallbacks)) {
             throw new ClassCastException("Activity must implement PageFragmentCallbacks");
         }
 
-        mCallbacks = (PageFragmentCallbacks) activity;
+        mCallbacks = (PageFragmentCallbacks) ((MainActivity) activity).getSupportFragmentManager().getFragments().get(0);
     }
 
     @Override
