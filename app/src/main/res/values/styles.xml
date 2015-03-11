@@ -29,6 +29,10 @@
     <!--Start EditText style-->
     <style name="PermutaSep.EditTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:textColor">#fff</item>
+        <item name="android:textColorHint">#FF8D8D8D</item>
+        <item name=""></item>
+
+
     </style>
     <!--End EditText style-->
 
