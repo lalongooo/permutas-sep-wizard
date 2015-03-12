@@ -16,10 +16,6 @@
 
 package com.example.android.wizardpager.wizard.ui;
 
-import com.example.android.wizardpager.R;
-import com.example.android.wizardpager.wizard.model.Page;
-import com.example.android.wizardpager.wizard.model.SingleFixedChoicePage;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,6 +26,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.android.wizardpager.R;
+import com.example.android.wizardpager.wizard.MainActivity;
+import com.example.android.wizardpager.wizard.model.Page;
+import com.example.android.wizardpager.wizard.model.SingleFixedChoicePage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,11 +104,11 @@ public class SingleChoiceFragment extends ListFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        if (!(activity instanceof PageFragmentCallbacks)) {
+        if (!(((MainActivity) activity).getSupportFragmentManager().getFragments().get(0) instanceof PageFragmentCallbacks)) {
             throw new ClassCastException("Activity must implement PageFragmentCallbacks");
         }
 
-        mCallbacks = (PageFragmentCallbacks) activity;
+        mCallbacks = (PageFragmentCallbacks) ((MainActivity) activity).getSupportFragmentManager().getFragments().get(0);
     }
 
     @Override

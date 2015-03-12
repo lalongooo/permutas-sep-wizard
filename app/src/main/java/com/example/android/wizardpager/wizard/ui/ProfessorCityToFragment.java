@@ -32,6 +32,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.android.wizardpager.R;
+import com.example.android.wizardpager.wizard.MainActivity;
 import com.example.android.wizardpager.wizard.model.Page;
 import com.example.android.wizardpager.wizard.model.ProfessorCityToPage;
 import com.permutassep.model.City;
@@ -138,11 +139,11 @@ public class ProfessorCityToFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        if (!(activity instanceof PageFragmentCallbacks)) {
+        if (!(((MainActivity) activity).getSupportFragmentManager().getFragments().get(0) instanceof PageFragmentCallbacks)) {
             throw new ClassCastException("Activity must implement PageFragmentCallbacks");
         }
 
-        mCallbacks = (PageFragmentCallbacks) activity;
+        mCallbacks = (PageFragmentCallbacks) ((MainActivity) activity).getSupportFragmentManager().getFragments().get(0);
     }
 
     @Override

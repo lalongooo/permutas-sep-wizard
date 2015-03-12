@@ -16,10 +16,6 @@
 
 package com.example.android.wizardpager.wizard.ui;
 
-import com.example.android.wizardpager.R;
-import com.example.android.wizardpager.wizard.model.MultipleFixedChoicePage;
-import com.example.android.wizardpager.wizard.model.Page;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +27,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.android.wizardpager.R;
+import com.example.android.wizardpager.wizard.MainActivity;
+import com.example.android.wizardpager.wizard.model.MultipleFixedChoicePage;
+import com.example.android.wizardpager.wizard.model.Page;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -112,11 +113,11 @@ public class MultipleChoiceFragment extends ListFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        if (!(activity instanceof PageFragmentCallbacks)) {
+        if (!(((MainActivity) activity).getSupportFragmentManager().getFragments().get(0) instanceof PageFragmentCallbacks)) {
             throw new ClassCastException("Activity must implement PageFragmentCallbacks");
         }
 
-        mCallbacks = (PageFragmentCallbacks) activity;
+        mCallbacks = (PageFragmentCallbacks) ((MainActivity) activity).getSupportFragmentManager().getFragments().get(0);
     }
 
     @Override
